@@ -2,19 +2,12 @@
 
 *CRM modelling & examples*
 
----
-
-
-
-[[TOC]]
-
----
 
 
 
 ## Name
 
-A name is an identifier of a person which refers to an agent in a specific moment in time (it is important to remember that it can change over time, see the case of _Prince_).A person's name in CRM can be model differently accordingly to our intention, as well as on the granularity of the information we want to map.
+A name is an identifier of a person which refers to an agent in a specific moment in time (it is important to remember that it can change over time, see the case of _Prince_). A person's name in CRM can be model differently accordingly to our intention, as well as on the granularity of the information we want to map.
 
 More than one name can be linked to one person, and one person can be known with diverse name, both during its life and after. The very first thing we should ask ourself is if the name we are modelling is the preferred name of that person or not. We will see examples of both.
 
@@ -22,12 +15,12 @@ More than one name can be linked to one person, and one person can be known with
 
 Possible modelling of the preferred name are:
 
-1. E21 Person → L4 has preferred label → rdfs:Literal
-2. E21 Person → skos:prefLabel → rdfs:Literal
+1. **E21 Person → L4 has preferred label → rdfs:Literal**
+2. **E21 Person → skos:prefLabel → rdfs:Literal**
 
 The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. The form preferred by I Tatti is the number 2 (_see the code block_). The reason is mainly because it employs SKOS, which we use in other part of the modelling. Moreover SKOS is more used globally.
 
-```{caption="caption example" .xml-dtd}
+```xml-dtd
 skos:prefLabel "Giovanni da Udine" .
 ```
 
@@ -36,9 +29,9 @@ skos:prefLabel "Giovanni da Udine" .
 
 Possible modelling of the name are:
 
-1. E21 Person → P1 is identified by → E41 Appellation → P3 has note → rdfs:Literal
-2. E21 Person → rdfs:Label → rdfs:Literal
-3. E21 Person → P1 is identified by → rdfs:Literal
+1. **E21 Person → P1 is identified by → E41 Appellation → P3 has note → rdfs:Literal**
+2. **E21 Person → rdfs:Label → rdfs:Literal**
+3. **E21 Person → P1 is identified by → rdfs:Literal**
 
 The main differences between the three is that example 1 treat the appellation not as a literal but as an entity which has a literal. Thus we can express statements about E41 Appellation, such as when it was used, how it come to be, where this form originate and others of such type.
 
@@ -58,8 +51,8 @@ A object can has multiple identifiers which we want to link to. An easy example 
 
 Possible modelling in CRM are:
 
-1. E21 Person → P48 has preferred identifier → rdfs:Literal (_see the code block number 1_)
-2. E21 Person → P1 is identified by→ rdfs:Literal (_see the code block number 2_)
+1. **E21 Person → P48 has preferred identifier → rdfs:Literal** (_see the code block number 1_)
+2. **E21 Person → P1 is identified by→ rdfs:Literal** (_see the code block number 2_)
 
 ```xml-dtd
 crm:P1_is_identified_by "B00000737" ;
@@ -78,7 +71,7 @@ Time is treated quite profoundly in CRM and diverse can be the time representati
 
 Such a diverse approach allow for a great diversity in the mapping:
 
-1. E12 Production→ P4 has time-span → E52 Time-Span → P79 beginning is qualified by → xsd:gYear / E12 Production→ P4 has time-span → E52 Time-Span → P80 end is qualified by → xsd:gYear
+1. **E12 Production→ P4 has time-span → E52 Time-Span → P79 beginning is qualified by → xsd:gYear / E12 Production→ P4 has time-span → E52 Time-Span → P80 end is qualified by → xsd:gYear**
 
 ```xml-dtd
  a crm:E225_Time-Span ;
@@ -94,13 +87,13 @@ Place is another important feature we should harmonise. Diverse are the possibil
 
 The identified mapping options are:
 
-1. E53 Place → P87 is identified by →  E47 Spatial Coordinates →  rdfs:Label →  rdfs:Literal
-2. wgs:SpatialThing→ wgs:lat →  rdfs:Literal / wgs:SpatialThing→ wgs:long →  rdfs:Literal
-3. E53 Place→ P87 is identified by → wgs:Point→ wgs:lat →  rdfs:Literal
+1. **E53 Place → P87 is identified by →  E47 Spatial Coordinates →  rdfs:Label →  rdfs:Literal**
+2. **wgs:SpatialThing→ wgs:lat →  rdfs:Literal / wgs:SpatialThing→ wgs:long →  rdfs:Literal**
+3. **E53 Place→ P87 is identified by → wgs:Point→ wgs:lat →  rdfs:Literal**
 
 We will see them in more details
 
-1. E53 Place → P87 is identified by →  E47 Spatial Coordinates →  rdfs:Label →  rdfs:Literal
+1. **E53 Place → P87 is identified by →  E47 Spatial Coordinates →  rdfs:Label →  rdfs:Literal**
 
    This mapping actually require the specification of the Type of the Spatial Coordinates we are  annotating a place with, such as "Latitude" or "Longitude". Other options could be "WGS84" or other reference system.
 
@@ -128,7 +121,7 @@ The solution is complex and require the use of type for something which should b
 
 
 
-2. wgs:SpatialThing→ wgs:lat →  rdfs:Literal / wgs:SpatialThing→ wgs:long →  rdfs:Literal
+2. **wgs:SpatialThing→ wgs:lat →  rdfs:Literal / wgs:SpatialThing→ wgs:long →  rdfs:Literal**
 
    ​
 
@@ -141,7 +134,7 @@ The solution is complex and require the use of type for something which should b
 ```
 
 
-3. E53 Place→ P87 is identified by → wgs:Point→ wgs:lat →  rdfs:Literal
+3. **E53 Place→ P87 is identified by → wgs:Point→ wgs:lat →  rdfs:Literal**
 
 This mapping takes in account the declaration, at an ontology level, that wgs:Point, an entity in the ontology Geo, is a subclass of E47 Spatial Coordinates. 
 
