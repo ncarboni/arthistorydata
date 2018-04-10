@@ -148,7 +148,7 @@ html,body,#wrapper{font-size:10pt!important}
 </head>
 <body class="normal">
   <div id="wrapper">
-      <h1 id="dataforarthistory">Data for art history</h1>
+      <h1 id="arthistorydata">Art history Data</h1>
 
 <p><em>CRM modelling &amp; examples</em></p>
 
@@ -168,7 +168,7 @@ html,body,#wrapper{font-size:10pt!important}
 </ol>
 
 <p>The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. The form preferred by I Tatti is the number 2 (<em>see the code block</em>). The reason is mainly because it employs SKOS, which we use in other part of the modelling. Moreover SKOS is more used globally.</p>
-<pre><code class="xml-dtd">skos:prefLabel &quot;Giovanni da Udine&quot; .</code></pre>
+<pre><code>skos:prefLabel &quot;Giovanni da Udine&quot; .</code></pre>
 
 <h3 id="name">Name</h3>
 
@@ -183,7 +183,7 @@ html,body,#wrapper{font-size:10pt!important}
 <p>The main differences between the three is that example 1 treat the appellation not as a literal but as an entity which has a literal. Thus we can express statements about E41 Appellation, such as when it was used, how it come to be, where this form originate and others of such type.</p>
 
 <p>The form chosen by I Tatti is the number 3 (<em>see the code block</em>). The reason is very practical. There was no need to express statements about the name itself, and the use of rdfs:label is preferable as a system level (<em>metaphacts</em>) in respect to crm:P1_is_identified_by . </p>
-<pre><code class="xml-dtd">a crm:E21_Person ;
+<pre><code>a crm:E21_Person ;
 rdfs:label &quot;Giovanni da Udine&quot; .</code></pre>
 
 <h2 id="identifier">Identifier</h2>
@@ -196,8 +196,8 @@ rdfs:label &quot;Giovanni da Udine&quot; .</code></pre>
 <li><strong>E21 Person → P48 has preferred identifier → rdfs:Literal</strong> (<em>see the code block number 1</em>)</li>
 <li><strong>E21 Person → P1 is identified by→ rdfs:Literal</strong> (<em>see the code block number 2</em>)</li>
 </ol>
-<pre><code class="xml-dtd">crm:P1_is_identified_by &quot;B00000737&quot; ;</code></pre>
-<pre><code class="xml-dtd">crm:P48_has_preferred_identifier &quot;A00000737&quot; ;</code></pre>
+<pre><code>crm:P1_is_identified_by &quot;B00000737&quot; ;</code></pre>
+<pre><code>crm:P48_has_preferred_identifier &quot;A00000737&quot; ;</code></pre>
 
 <h2 id="time">Time</h2>
 
@@ -208,9 +208,9 @@ rdfs:label &quot;Giovanni da Udine&quot; .</code></pre>
 <ol>
 <li><strong>E12 Production→ P4 has time-span → E52 Time-Span → P79 beginning is qualified by → xsd:gYear / E12 Production→ P4 has time-span → E52 Time-Span → P80 end is qualified by → xsd:gYear</strong></li>
 </ol>
-<pre><code class="xml-dtd"> a crm:E225_Time-Span ;
+<pre><code> a crm:E225_Time-Span ;
 crm:P79_beginning_is_qualified_by &quot;1401&quot;^^xsd:gYear ;
-crm:P80_end_is_qualified_by  &quot;1700&quot;^^xsd:gYear .</code></pre>
+crm:P80_end_is_qualified_by &quot;1700&quot;^^xsd:gYear .</code></pre>
 
 <h2 id="place">Place</h2>
 
@@ -268,20 +268,17 @@ crm:P80_end_is_qualified_by  &quot;1700&quot;^^xsd:gYear .</code></pre>
 </tr>
 </tbody>
 </table>
-<pre><code class="xml-dtd"> a crm:E53_Place ;
-crm:P87_is_identified_by  ,  .
+<pre><code> a crm:E53_Place ;
+crm:P87_is_identified_by , .
 
-
-a crm:E47_Spatial_Coordinates;
+<p>a crm:E47_Spatial_Coordinates;
 rdfs:label &quot;11.8818051&quot; ;
-crm:P2_has_type &ldquo;Longitude&quot; .
-
-
+crm:P2_has_type &ldquo;Longitude&quot; .</p>
 a crm:E47_Spatial_Coordinates;
 rdfs:label &quot;60.1701801&quot; ;
 crm:P2_has_type &ldquo;Latitude&quot; .</code></pre>
 
-<p>solution is complex and require the use of type for something which should be properly expressed. Moreover, another type would be use if the reference system should be specified.</p>
+<p>The solution is complex and require the use of type for something which should be properly expressed. Moreover, another type would be use if the reference system should be specified.</p>
 
 <ol>
 <li><strong>wgs:SpatialThing→ wgs:lat → rdfs:Literal / wgs:SpatialThing→ wgs:long → rdfs:Literal</strong></li>
@@ -290,16 +287,16 @@ crm:P2_has_type &ldquo;Latitude&quot; .</code></pre>
 <p>​</p>
 
 <p>Another solution is to map a wgs:SpatialThing, which is an entity of the Ontology Geo as a subclass of E53 Place and express the latitude and longitude relative to the place. It is a straightforward solution which, however, does confuse, as it happens in many case, what it is a place and what are the coordinate of that place. The two are very different and should not be mix together.</p>
-<pre><code class="xml-dtd">   a wgs:SpatialThing;
-   wgs:lat &ldquo;60.1701801&quot; ;
-   wgs:long &ldquo;24.9419037&rdquo; .</code></pre>
+<pre><code> a wgs:SpatialThing;
+ wgs:lat &ldquo;60.1701801&quot; ;
+ wgs:long &ldquo;24.9419037&rdquo; .</code></pre>
 
 <ol>
 <li><strong>E53 Place→ P87 is identified by → wgs:Point→ wgs:lat → rdfs:Literal</strong></li>
 </ol>
 
 <p>This mapping takes in account the declaration, at an ontology level, that wgs:Point, an entity in the ontology Geo, is a subclass of E47 Spatial Coordinates. </p>
-<pre><code class="xml-dtd">https://collection.itatti.harvard.edu/resource/ex/place/ a crm:E53_Place ;
+<pre><code>https://collection.itatti.harvard.edu/resource/ex/place/ a crm:E53_Place ;
 crm:P87_is_identified_by https://collection.itatti.harvard.edu/resource/ex/place/point .
 a wgs:Point;
 wgs:lat &quot;60.1701801&quot; ;
@@ -310,7 +307,7 @@ wgs:long &ldquo;24.9419037&quot; .</code></pre>
 <h2 id="owlsameas">OWL sameAs</h2>
 
 <p>A specific paragraph should be dedicated to owl:sameas which is probably one of the most used element in owl, and a way to connected entities bewteen diverse graph.</p>
-<pre><code class="xml-dtd">https://collection.itatti.harvard.edu/resource/person/example
+<pre><code>https://collection.itatti.harvard.edu/resource/person/example
 owl:sameas &quot;http://vocab.getty.edu/ulan/500004700&quot; .</code></pre>
 
 <p>Its popularity has made it particolarly misused, and it is better to remind everyone (author included) that for linking entities which are not exactly the same<a href="#fn:2" id="fnref:2" title="see footnote" class="footnote">[2]</a> other properties are available, such as skos:exactMatch which should be considered always as possible alternative.</p>
