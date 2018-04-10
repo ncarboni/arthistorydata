@@ -31,7 +31,6 @@ The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMD
 skos:prefLabel "Giovanni da Udine" .
 ```
 
-![logo_harvard_t2](/Users/Nicola/Desktop/logo_harvard_t2.png){width=50%}
 
 ### Name
 
