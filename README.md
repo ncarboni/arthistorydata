@@ -1,4 +1,4 @@
-#  Data for art history
+#  Art history Data
 
 *CRM modelling & examples*
 
