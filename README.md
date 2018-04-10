@@ -1,4 +1,4 @@
-# Data for art history
+#  Data for art history
 
 *CRM modelling & examples*
 
@@ -6,7 +6,7 @@
 
 
 
-[TOC]
+[[TOC]]
 
 ---
 
@@ -27,12 +27,11 @@ Possible modelling of the preferred name are:
 
 The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. The form preferred by I Tatti is the number 2 (_see the code block_). The reason is mainly because it employs SKOS, which we use in other part of the modelling. Moreover SKOS is more used globally.
 
-```xml-dtd
-<https://collection.itatti.harvard.edu/resource/person/example>
+```{caption="caption example" .xml-dtd}
 skos:prefLabel "Giovanni da Udine" .
 ```
 
-
+![logo_harvard_t2](/Users/Nicola/Desktop/logo_harvard_t2.png){width=50%}
 
 ### Name
 
@@ -47,8 +46,7 @@ The main differences between the three is that example 1 treat the appellation n
 The form chosen by I Tatti is the number 3 (_see the code block_). The reason is very practical. There was no need to express statements about the name itself, and the use of rdfs:label is preferable as a system level (_metaphacts_) in respect to crm:P1_is_identified_by . 
 
 
-```dtd
-<https://collection.itatti.harvard.edu/resource/person/example>
+```xml-dtd
 a crm:E21_Person ;
 rdfs:label "Giovanni da Udine" .
 ```
@@ -65,19 +63,17 @@ Possible modelling in CRM are:
 2. E21 Person → P1 is identified by→ rdfs:Literal (_see the code block number 2_)
 
 ```xml-dtd
-<https://collection.itatti.harvard.edu/resource/person/example>
 crm:P1_is_identified_by "B00000737" ;
 ```
 
 
 ```xml-dtd
-<https://collection.itatti.harvard.edu/resource/person/example>
 crm:P48_has_preferred_identifier "A00000737" ;
 ```
 
 
 
-##Time
+## Time
 
 Time is treated quite profoundly in CRM and diverse can be the time representations as well as time expression that the model offer. A possible summarisation of these approaches is outside the scope of the document but the one interested could consult the resource **list resources**
 
@@ -86,7 +82,7 @@ Such a diverse approach allow for a great diversity in the mapping:
 1. E12 Production→ P4 has time-span → E52 Time-Span → P79 beginning is qualified by → xsd:gYear / E12 Production→ P4 has time-span → E52 Time-Span → P80 end is qualified by → xsd:gYear
 
 ```xml-dtd
-<https://collection.itatti.harvard.edu/resource/work/ex/production/timespan> a crm:E225_Time-Span ;
+ a crm:E225_Time-Span ;
 crm:P79_beginning_is_qualified_by "1401"^^xsd:gYear ;
 crm:P80_end_is_qualified_by  "1700"^^xsd:gYear .
 ```
@@ -116,15 +112,15 @@ We will see them in more details
 
 
 ```xml-dtd
-<https://collection.itatti.harvard.edu/resource/place> a crm:E53_Place ;
-crm:P87_is_identified_by <https://collection.itatti.harvard.edu/resource/place/ex/lat> , <https://collection.itatti.harvard.edu/resource/ex/place/lng> .
+ a crm:E53_Place ;
+crm:P87_is_identified_by  ,  .
 
-<https://collection.itatti.harvard.edu/resource/institution/P00000210/Arezzo/lng>
+
 a crm:E47_Spatial_Coordinates;
 rdfs:label "11.8818051" ;
 crm:P2_has_type “Longitude" .
 
-<https://collection.itatti.harvard.edu/resource/institution/P00000210/Arezzo/lat>
+
 a crm:E47_Spatial_Coordinates;
 rdfs:label "60.1701801" ;
 crm:P2_has_type “Latitude" .
@@ -135,12 +131,11 @@ The solution is complex and require the use of type for something which should b
 
 2. wgs:SpatialThing→ wgs:lat →  rdfs:Literal / wgs:SpatialThing→ wgs:long →  rdfs:Literal
 
-
+   ​
 
    Another solution is to map a wgs:SpatialThing, which is an entity of the Ontology Geo as a subclass of E53 Place and express the latitude and longitude relative to the place. It is a straightforward solution which, however, does confuse, as it happens in many case, what it is a place and what are the coordinate of that place. The two are very different and should not be mix together.
 
 ```xml-dtd
-   <https://collection.itatti.harvard.edu/resource/place/ex>
    a wgs:SpatialThing;
    wgs:lat “60.1701801" ;
    wgs:long “24.9419037” .
@@ -177,4 +172,5 @@ Its popularity has made it particolarly misused, and it is better to remind ever
 
 
 [^1]: Not recognised officialy by W3C, Geo becomes a *standard de facto* for geographical data. However it is not as complex or precise as GEOSparql or CRMGeo
+
 [^2]: See the case of historical place vs actual places.
