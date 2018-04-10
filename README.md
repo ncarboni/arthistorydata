@@ -12,7 +12,7 @@
 
 
 
-##Name
+## Name
 
 A name is an identifier of a person which refers to an agent in a specific moment in time (it is important to remember that it can change over time, see the case of _Prince_).A person's name in CRM can be model differently accordingly to our intention, as well as on the granularity of the information we want to map.
 
@@ -27,12 +27,12 @@ Possible modelling of the preferred name are:
 
 The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. The form preferred by I Tatti is the number 2 (_see the code block_). The reason is mainly because it employs SKOS, which we use in other part of the modelling. Moreover SKOS is more used globally.
 
-```{caption="caption example" .xml-dtd}
+```xml-dtd
 <https://collection.itatti.harvard.edu/resource/person/example>
 skos:prefLabel "Giovanni da Udine" .
 ```
 
-![logo_harvard_t2](/Users/Nicola/Desktop/logo_harvard_t2.png){width=50%}
+
 
 ### Name
 
@@ -47,7 +47,7 @@ The main differences between the three is that example 1 treat the appellation n
 The form chosen by I Tatti is the number 3 (_see the code block_). The reason is very practical. There was no need to express statements about the name itself, and the use of rdfs:label is preferable as a system level (_metaphacts_) in respect to crm:P1_is_identified_by . 
 
 
-​```dtd
+```dtd
 <https://collection.itatti.harvard.edu/resource/person/example>
 a crm:E21_Person ;
 rdfs:label "Giovanni da Udine" .
@@ -64,7 +64,7 @@ Possible modelling in CRM are:
 1. E21 Person → P48 has preferred identifier → rdfs:Literal (_see the code block number 1_)
 2. E21 Person → P1 is identified by→ rdfs:Literal (_see the code block number 2_)
 
-​```xml-dtd
+```xml-dtd
 <https://collection.itatti.harvard.edu/resource/person/example>
 crm:P1_is_identified_by "B00000737" ;
 ```
@@ -135,7 +135,7 @@ The solution is complex and require the use of type for something which should b
 
 2. wgs:SpatialThing→ wgs:lat →  rdfs:Literal / wgs:SpatialThing→ wgs:long →  rdfs:Literal
 
-   ​
+
 
    Another solution is to map a wgs:SpatialThing, which is an entity of the Ontology Geo as a subclass of E53 Place and express the latitude and longitude relative to the place. It is a straightforward solution which, however, does confuse, as it happens in many case, what it is a place and what are the coordinate of that place. The two are very different and should not be mix together.
 
