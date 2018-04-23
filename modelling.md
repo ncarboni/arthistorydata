@@ -159,6 +159,57 @@ owl:sameas "http://vocab.getty.edu/ulan/500004700" .
 
 Its popularity has made it particularly misused, and it is better to remind everyone (author included) that for linking entities which are not exactly the same[^2] other properties are available, such as skos:exactMatch which should be considered always as possible alternative.
 
+# Bibliographic Data
+
+We model bibliographic data using [FRBRoo](http://www.cidoc-crm.org/frbroo/), the CIDOC-CRM extension for bibliographic data. We demonstrate the modelling of a printed book, but the approach can be adapted to similar items of expressive matters, such as letters, manuscripts, recordings, etc.
+
+Note: the information here is based on FRBRoo 2.4, which is the latest release at the time of writing. FRBRoo 3.0 is currently under development.
+
+## References
+
+The examples are based on the data of the [Sphaera](http://sphaera.mpiwg-beriln.mpg.de) project. The data model for this was developed following the guidelines in:
+
+ Doerr, M., Gradmann, S., LeBoeuf, P., Aalberg, T., Bailly, R., & Olensky, M. (2013). _Final Report on EDM - FRBRoo Application Profile Task Force_. Europeana. Retrieved from <http://pro.europeana.eu/taskforce/edm-frbroo-application-profile>
+
+A tutorial on FRBRoo is available [here](http://83.212.168.219/FRBR_Tutorial/)
+
+## Book
+
+In FRBRoo, a book is understood as consisting of several (CRM) entities:
+
+- the physical book (F5 Item): an individual material copy of a book
+- the manifestation (F3 Manifestation Product Type): the 'prototype' of a particular book, identifiable for example by an ISBN number
+- the expression (F22 Self-Contained Expression): the text contained in a book
+- the work (F1 Work): the work conveyed by a book
+
+Using this terminology we can talk of my personal copy of Virginia Woolf's _Orlando_ (F5 Item), which is the Oxford World's Classics edition (F3 Manifestation Product Type), that contains the text edited by Michael H. Whitworth (F22 Self-Contained Expression) and conveys Vriginia Woolf's work _Orlando_ (F1 Work).
+
+Note: In FRBRoo 2.4 we distinguish between the _F24 Publication Expression_ that includes the entire content of a book (including page numbers, TOC, etc.) and the _F22 Self-Contained Expression_ that includes the text as written by the author. This discrimination is likely to be abandoned in version 3.0.
+
+The components are modelled as follows:
+
+1. **F5 Item → P128 carries → F24 Publication Expression**
+2. **F24 Publication Expression → P165 incorporates → F22 Self-Contained Expression**
+3. **F5 Item → R7 is example of → F3 Manifestation Product Type**
+4. **F1 Work → R3 is realised in → F22 Self-Contained Expression**
+
+```ttl
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
+
+<http://example.org/book> a frbroo:F5_Item ;
+	crm:P128_carries <http://example.org/book/publication> ;
+	crm:R7_is_example_of <http://example.org/book/manifestation> .
+
+<http://example.org/book/publication> a frbroo:F24_Publication_Expression ;
+	crm:P165_incorporates <http://example.org/book/expression> . 
+
+<http://example.org/book/expression> a frbroo:F22_Self-Contained_Expression .
+
+<http://example.org/book/work> a frbroo:F1_Work ;
+	frbroo:R3_is_realised_in <http://example.org/book/expression> .
+```
+
 
 
 
