@@ -210,10 +210,60 @@ The components are modelled as follows:
 	frbroo:R3_is_realised_in <http://example.org/book/expression> .
 ```
 
+### Author
+
+As author we understand the actor(s) responsible for the creation of a F22 Self-Contained Expression. Therefore, the term does not convey a particular idea of authorship and can include different roles, such as translators, copyists, etc.
+
+We model the creation of the Expression as follows:
+
+1. **F22 Self-Contained Expression → R17i was created by → F28 Expression Creation**[^3]
+
+The author is then represented as the actor carrying out the event
+
+1. **F28 Expression Creation → P14 carried out by → E39 Actor**
 
 
+```ttl
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
+
+<http://example.org/book/expression> a frbroo:F22_Self-Contained_Expression ;
+	frbroo:R17i_was_created_by <http://example.org/book/expression/event> .
+	
+<http://example.org/book/expression/event> a frbroo:F28_Expression_Creation ;
+	crm:P14_carried_out_by <http://example.org/actor> .
+	
+<http://example.org/actor> a crm:E39_Actor .
+```
+
+The typed property PC14 carried out by is used when we need to represent additional information:
+
+1. **F28 Expression Creation → P01 is domain of → PC14 carried out by → P02 has range → E39 Actor**
+2. **PC14 carried out by → P14.1 in the role of → E55 Type**
+
+
+```ttl
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
+
+<http://example.org/book/expression> a frbroo:F22_Self-Contained_Expression ;
+	frbroo:R17i_was_created_by <http://example.org/book/expression/event> .
+	
+<http://example.org/book/expression/event> a frbroo:F28_Expression_Creation ;
+	crm:P01_is_domain_of <http://example.org/book/author> .
+	
+<http://example.org/book/author> a crm:PC14_carried_out_by ;
+	crm:P02_has_range <http://example.org/actor> ;
+	crm:P14.1_in_the_role_of <http://example.org/type/author>
+	
+<http://example.org/actor> a crm:E39_Actor .
+
+<http://example.org/type/author> a crm:E55_Type .
+```
 
 
 [^1]: Not recognised officialy by W3C, Geo becomes a *standard de facto* for geographical data. However it is not as complex or precise as GEOSparql or CRMGeo
 
 [^2]: See the case of historical place vs actual places.
+
+[^3]: We occasionally prefer to note the inverse CIDOC properties, denoted by _i_, when there is an identifiable 'central' entity. 
