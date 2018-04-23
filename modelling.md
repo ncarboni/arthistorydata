@@ -250,9 +250,9 @@ The typed property PC14 carried out by is used when we need to represent additio
 	frbroo:R17i_was_created_by <http://example.org/book/expression/event> .
 	
 <http://example.org/book/expression/event> a frbroo:F28_Expression_Creation ;
-	crm:P01_is_domain_of <http://example.org/book/author> .
+	crm:P01_is_domain_of <http://example.org/book/author/1> .
 	
-<http://example.org/book/author> a crm:PC14_carried_out_by ;
+<http://example.org/book/author/1> a crm:PC14_carried_out_by ;
 	crm:P02_has_range <http://example.org/actor> ;
 	crm:P14.1_in_the_role_of <http://example.org/type/author>
 	
