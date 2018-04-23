@@ -150,14 +150,14 @@ This solution is, for us, the most satisfying, because it clarify the properties
 
 ## OWL sameAs
 
-A specific paragraph should be dedicated to owl:sameas which is probably one of the most used element in owl, and a way to connected entities bewteen diverse graph.
+A specific paragraph should be dedicated to owl:sameas which is probably one of the most used element in owl, and a way to connected entities between diverse graph.
 
 ```xml-dtd
 https://collection.itatti.harvard.edu/resource/person/example
 owl:sameas "http://vocab.getty.edu/ulan/500004700" .
 ```
 
-Its popularity has made it particolarly misused, and it is better to remind everyone (author included) that for linking entities which are not exactly the same[^2] other properties are available, such as skos:exactMatch which should be considered always as possible alternative.
+Its popularity has made it particularly misused, and it is better to remind everyone (author included) that for linking entities which are not exactly the same[^2] other properties are available, such as skos:exactMatch which should be considered always as possible alternative.
 
 
 
