@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>README</title>
+  <title>modelling</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style id="mkstylesheet">
 @import url(http://fonts.googleapis.com/css?family=Open+Sans);
@@ -146,7 +146,7 @@ html,body,#wrapper{font-size:10pt!important}
 
 
 </head>
-<body class="normal">
+<body class="normal firstload">
   <div id="wrapper">
       <h1 id="arthistorydata">Art history Data</h1>
 
@@ -168,7 +168,7 @@ html,body,#wrapper{font-size:10pt!important}
 </ol>
 
 <p>The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. The form preferred by I Tatti is the number 2 (<em>see the code block</em>). The reason is mainly because it employs SKOS, which we use in other part of the modelling. Moreover SKOS is more used globally.</p>
-<pre><code>skos:prefLabel &quot;Giovanni da Udine&quot; .</code></pre>
+<pre><code class="xml-dtd">skos:prefLabel &quot;Giovanni da Udine&quot; .</code></pre>
 
 <h3 id="name">Name</h3>
 
@@ -183,7 +183,7 @@ html,body,#wrapper{font-size:10pt!important}
 <p>The main differences between the three is that example 1 treat the appellation not as a literal but as an entity which has a literal. Thus we can express statements about E41 Appellation, such as when it was used, how it come to be, where this form originate and others of such type.</p>
 
 <p>The form chosen by I Tatti is the number 3 (<em>see the code block</em>). The reason is very practical. There was no need to express statements about the name itself, and the use of rdfs:label is preferable as a system level (<em>metaphacts</em>) in respect to crm:P1_is_identified_by . </p>
-<pre><code>a crm:E21_Person ;
+<pre><code class="xml-dtd">a crm:E21_Person ;
 rdfs:label &quot;Giovanni da Udine&quot; .</code></pre>
 
 <h2 id="identifier">Identifier</h2>
@@ -196,8 +196,8 @@ rdfs:label &quot;Giovanni da Udine&quot; .</code></pre>
 <li><strong>E21 Person → P48 has preferred identifier → rdfs:Literal</strong> (<em>see the code block number 1</em>)</li>
 <li><strong>E21 Person → P1 is identified by→ rdfs:Literal</strong> (<em>see the code block number 2</em>)</li>
 </ol>
-<pre><code>crm:P1_is_identified_by &quot;B00000737&quot; ;</code></pre>
-<pre><code>crm:P48_has_preferred_identifier &quot;A00000737&quot; ;</code></pre>
+<pre><code class="xml-dtd">crm:P1_is_identified_by &quot;B00000737&quot; ;</code></pre>
+<pre><code class="xml-dtd">crm:P48_has_preferred_identifier &quot;A00000737&quot; ;</code></pre>
 
 <h2 id="time">Time</h2>
 
@@ -208,9 +208,9 @@ rdfs:label &quot;Giovanni da Udine&quot; .</code></pre>
 <ol>
 <li><strong>E12 Production→ P4 has time-span → E52 Time-Span → P79 beginning is qualified by → xsd:gYear / E12 Production→ P4 has time-span → E52 Time-Span → P80 end is qualified by → xsd:gYear</strong></li>
 </ol>
-<pre><code> a crm:E225_Time-Span ;
+<pre><code class="xml-dtd"> a crm:E225_Time-Span ;
 crm:P79_beginning_is_qualified_by &quot;1401&quot;^^xsd:gYear ;
-crm:P80_end_is_qualified_by &quot;1700&quot;^^xsd:gYear .</code></pre>
+crm:P80_end_is_qualified_by  &quot;1700&quot;^^xsd:gYear .</code></pre>
 
 <h2 id="place">Place</h2>
 
@@ -268,17 +268,20 @@ crm:P80_end_is_qualified_by &quot;1700&quot;^^xsd:gYear .</code></pre>
 </tr>
 </tbody>
 </table>
-<pre><code> a crm:E53_Place ;
-crm:P87_is_identified_by , .
+<pre><code class="xml-dtd"> a crm:E53_Place ;
+crm:P87_is_identified_by  ,  .
 
-<p>a crm:E47_Spatial_Coordinates;
+
+a crm:E47_Spatial_Coordinates;
 rdfs:label &quot;11.8818051&quot; ;
-crm:P2_has_type &ldquo;Longitude&quot; .</p>
+crm:P2_has_type &ldquo;Longitude&quot; .
+
+
 a crm:E47_Spatial_Coordinates;
 rdfs:label &quot;60.1701801&quot; ;
 crm:P2_has_type &ldquo;Latitude&quot; .</code></pre>
 
-<p>The solution is complex and require the use of type for something which should be properly expressed. Moreover, another type would be use if the reference system should be specified.</p>
+<p>solution is complex and require the use of type for something which should be properly expressed. Moreover, another type would be use if the reference system should be specified.</p>
 
 <ol>
 <li><strong>wgs:SpatialThing→ wgs:lat → rdfs:Literal / wgs:SpatialThing→ wgs:long → rdfs:Literal</strong></li>
@@ -287,16 +290,16 @@ crm:P2_has_type &ldquo;Latitude&quot; .</code></pre>
 <p>​</p>
 
 <p>Another solution is to map a wgs:SpatialThing, which is an entity of the Ontology Geo as a subclass of E53 Place and express the latitude and longitude relative to the place. It is a straightforward solution which, however, does confuse, as it happens in many case, what it is a place and what are the coordinate of that place. The two are very different and should not be mix together.</p>
-<pre><code> a wgs:SpatialThing;
- wgs:lat &ldquo;60.1701801&quot; ;
- wgs:long &ldquo;24.9419037&rdquo; .</code></pre>
+<pre><code class="xml-dtd">   a wgs:SpatialThing;
+   wgs:lat &ldquo;60.1701801&quot; ;
+   wgs:long &ldquo;24.9419037&rdquo; .</code></pre>
 
 <ol>
 <li><strong>E53 Place→ P87 is identified by → wgs:Point→ wgs:lat → rdfs:Literal</strong></li>
 </ol>
 
 <p>This mapping takes in account the declaration, at an ontology level, that wgs:Point, an entity in the ontology Geo, is a subclass of E47 Spatial Coordinates. </p>
-<pre><code>https://collection.itatti.harvard.edu/resource/ex/place/ a crm:E53_Place ;
+<pre><code class="xml-dtd">https://collection.itatti.harvard.edu/resource/ex/place/ a crm:E53_Place ;
 crm:P87_is_identified_by https://collection.itatti.harvard.edu/resource/ex/place/point .
 a wgs:Point;
 wgs:lat &quot;60.1701801&quot; ;
@@ -306,11 +309,112 @@ wgs:long &ldquo;24.9419037&quot; .</code></pre>
 
 <h2 id="owlsameas">OWL sameAs</h2>
 
-<p>A specific paragraph should be dedicated to owl:sameas which is probably one of the most used element in owl, and a way to connected entities bewteen diverse graph.</p>
-<pre><code>https://collection.itatti.harvard.edu/resource/person/example
+<p>A specific paragraph should be dedicated to owl:sameas which is probably one of the most used element in owl, and a way to connected entities between diverse graph.</p>
+<pre><code class="xml-dtd">https://collection.itatti.harvard.edu/resource/person/example
 owl:sameas &quot;http://vocab.getty.edu/ulan/500004700&quot; .</code></pre>
 
-<p>Its popularity has made it particolarly misused, and it is better to remind everyone (author included) that for linking entities which are not exactly the same<a href="#fn:2" id="fnref:2" title="see footnote" class="footnote">[2]</a> other properties are available, such as skos:exactMatch which should be considered always as possible alternative.</p>
+<p>Its popularity has made it particularly misused, and it is better to remind everyone (author included) that for linking entities which are not exactly the same<a href="#fn:2" id="fnref:2" title="see footnote" class="footnote">[2]</a> other properties are available, such as skos:exactMatch which should be considered always as possible alternative.</p>
+
+<h1 id="bibliographicdata">Bibliographic Data</h1>
+
+<p>We model bibliographic data using <a href="http://www.cidoc-crm.org/frbroo/">FRBRoo</a>, the CIDOC-CRM extension for bibliographic data. We demonstrate the modelling of a printed book, but the approach can be adapted to similar items of expressive matters, such as letters, manuscripts, recordings, etc.</p>
+
+<p>Note: the information here is based on FRBRoo 2.4, which is the latest release at the time of writing. FRBRoo 3.0 is currently under development.</p>
+
+<h2 id="references">References</h2>
+
+<p>The examples are based on the data of the <a href="http://sphaera.mpiwg-beriln.mpg.de">Sphaera</a> project. The data model for this was developed following the guidelines in:</p>
+
+<p>Doerr, M., Gradmann, S., LeBoeuf, P., Aalberg, T., Bailly, R., &amp; Olensky, M. (2013). <em>Final Report on EDM - FRBRoo Application Profile Task Force</em>. Europeana. Retrieved from <a href="http://pro.europeana.eu/taskforce/edm-frbroo-application-profile">http://pro.europeana.eu/taskforce/edm-frbroo-application-profile</a></p>
+
+<p>A tutorial on FRBRoo is available <a href="http://83.212.168.219/FRBR_Tutorial/">here</a></p>
+
+<h2 id="book">Book</h2>
+
+<p>In FRBRoo, a book is understood as consisting of several (CRM) entities:</p>
+
+<ul>
+<li>the physical book (F5 Item): an individual material copy of a book</li>
+<li>the manifestation (F3 Manifestation Product Type): the &#8216;prototype&#8217; of a particular book, identifiable for example by an ISBN number</li>
+<li>the expression (F22 Self-Contained Expression): the text contained in a book</li>
+<li>the work (F1 Work): the work conveyed by a book</li>
+</ul>
+
+<p>Using this terminology we can talk of my personal copy of Virginia Woolf&#8217;s <em>Orlando</em> (F5 Item), which is the Oxford World&#8217;s Classics edition (F3 Manifestation Product Type), that contains the text edited by Michael H. Whitworth (F22 Self-Contained Expression) and conveys Vriginia Woolf&#8217;s work <em>Orlando</em> (F1 Work).</p>
+
+<p>Note: In FRBRoo 2.4 we distinguish between the <em>F24 Publication Expression</em> that includes the entire content of a book (including page numbers, TOC, etc.) and the <em>F22 Self-Contained Expression</em> that includes the text as written by the author. This discrimination is likely to be abandoned in version 3.0.</p>
+
+<p>The components are modelled as follows:</p>
+
+<ol>
+<li><strong>F5 Item → P128 carries → F24 Publication Expression</strong></li>
+<li><strong>F24 Publication Expression → P165 incorporates → F22 Self-Contained Expression</strong></li>
+<li><strong>F5 Item → R7 is example of → F3 Manifestation Product Type</strong></li>
+<li><strong>F1 Work → R3 is realised in → F22 Self-Contained Expression</strong></li>
+</ol>
+<pre><code class="ttl">@prefix frbroo: &lt;http://iflastandards.info/ns/fr/frbr/frbroo/&gt;.
+@prefix crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt;.
+
+&lt;http://example.org/book&gt; a frbroo:F5_Item ;
+	crm:P128_carries &lt;http://example.org/book/publication&gt; ;
+	crm:R7_is_example_of &lt;http://example.org/book/manifestation&gt; .
+
+&lt;http://example.org/book/publication&gt; a frbroo:F24_Publication_Expression ;
+	crm:P165_incorporates &lt;http://example.org/book/expression&gt; . 
+
+&lt;http://example.org/book/expression&gt; a frbroo:F22_Self-Contained_Expression .
+
+&lt;http://example.org/book/work&gt; a frbroo:F1_Work ;
+	frbroo:R3_is_realised_in &lt;http://example.org/book/expression&gt; .</code></pre>
+
+<h3 id="author">Author</h3>
+
+<p>As author we understand the actor(s) responsible for the creation of a F22 Self-Contained Expression. Therefore, the term does not convey a particular idea of authorship and can include different roles, such as translators, copyists, etc.</p>
+
+<p>We model the creation of the Expression as follows:</p>
+
+<ol>
+<li><strong>F22 Self-Contained Expression → R17i was created by → F28 Expression Creation</strong><a href="#fn:3" id="fnref:3" title="see footnote" class="footnote">[3]</a></li>
+</ol>
+
+<p>The author is then represented as the actor carrying out the event</p>
+
+<ol>
+<li><strong>F28 Expression Creation → P14 carried out by → E39 Actor</strong></li>
+</ol>
+<pre><code class="ttl">@prefix frbroo: &lt;http://iflastandards.info/ns/fr/frbr/frbroo/&gt;.
+@prefix crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt;.
+
+&lt;http://example.org/book/expression&gt; a frbroo:F22_Self-Contained_Expression ;
+	frbroo:R17i_was_created_by &lt;http://example.org/book/expression/event&gt; .
+	
+&lt;http://example.org/book/expression/event&gt; a frbroo:F28_Expression_Creation ;
+	crm:P14_carried_out_by &lt;http://example.org/actor&gt; .
+	
+&lt;http://example.org/actor&gt; a crm:E39_Actor .</code></pre>
+
+<p>The typed property PC14 carried out by is used when we need to represent additional information:</p>
+
+<ol>
+<li><strong>F28 Expression Creation → P01 is domain of → PC14 carried out by → P02 has range → E39 Actor</strong></li>
+<li><strong>PC14 carried out by → P14.1 in the role of → E55 Type</strong></li>
+</ol>
+<pre><code class="ttl">@prefix frbroo: &lt;http://iflastandards.info/ns/fr/frbr/frbroo/&gt;.
+@prefix crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt;.
+
+&lt;http://example.org/book/expression&gt; a frbroo:F22_Self-Contained_Expression ;
+	frbroo:R17i_was_created_by &lt;http://example.org/book/expression/event&gt; .
+	
+&lt;http://example.org/book/expression/event&gt; a frbroo:F28_Expression_Creation ;
+	crm:P01_is_domain_of &lt;http://example.org/book/author/1&gt; .
+	
+&lt;http://example.org/book/author/1&gt; a crm:PC14_carried_out_by ;
+	crm:P02_has_range &lt;http://example.org/actor&gt; ;
+	crm:P14.1_in_the_role_of &lt;http://example.org/type/author&gt;
+	
+&lt;http://example.org/actor&gt; a crm:E39_Actor .
+
+&lt;http://example.org/type/author&gt; a crm:E55_Type .</code></pre>
 
 <div class="footnotes">
 <hr />
@@ -322,6 +426,10 @@ owl:sameas &quot;http://vocab.getty.edu/ulan/500004700&quot; .</code></pre>
 
 <li id="fn:2">
 <p>See the case of historical place vs actual places. <a href="#fnref:2" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
+</li>
+
+<li id="fn:3">
+<p>We occasionally prefer to note the inverse CIDOC properties, denoted by <em>i</em>, when there is an identifiable &#8216;central&#8217; entity.  <a href="#fnref:3" title="return to article" class="reversefootnote">&#160;&#8617;</a></p>
 </li>
 
 </ol>
