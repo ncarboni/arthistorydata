@@ -1,45 +1,39 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Art History Data</title>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic'
-          rel='stylesheet' type='text/css'>
+        <title>Art History Data</title>
 
-    <link rel="stylesheet" href="https://ncarboni.github.io/arthistorydata/css/theme.css" type="text/css"/>
-    <link rel="stylesheet" href="https://ncarboni.github.io/arthistorydata/css/theme-fixes.css" type="text/css"/>
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
-</head>
-<body class="wy-body-for-nav">
+        <link rel="stylesheet" href="https://ncarboni.github.io/arthistorydata/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://ncarboni.github.io/arthistorydata/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://ncarboni.github.io/arthistorydata/css/highlight.dark.css">
+        <link rel="stylesheet" href="https://ncarboni.github.io/arthistorydata/css/main.css">
+    </head>
+    <body>
 
-    <div class="wy-grid-for-nav">
+        <header class="navbar navbar-default navbar-fixed-top">
 
-        <nav data-toggle="wy-nav-shift" class="wy-nav-side">
-            <div class="wy-side-nav-search">
-                <a href="https://ncarboni.github.io/arthistorydata/" class="fa fa-home"> Art History Data</a>
-            </div>
+            <a class="navbar-brand" href="https://ncarboni.github.io/arthistorydata/">
+                Art History Data
+                <small class="hidden-xs hidden-sm">
+                    CIDOC-CRM harmonisation group
+                </small>
+            </a>
 
-            <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                                    </ul>
-            </div>
-            &nbsp;
-        </nav>
+                            <a href="https://github.com/ncarboni/arthistorydata">
+                    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
+                </a>
+            
+        </header>
 
-        <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+        <main class="container">
+            <div class="row">
 
-                        <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-                <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-                <a href="https://ncarboni.github.io/arthistorydata/">Art History Data</a>
-            </nav>
-
-
-                        <div class="wy-nav-content">
-                <div class="rst-content">
-                    <div role="main" class="document">
-                        <h1 id="art-history-data">Art history Data</h1>
+                
+                <section id="content" class="col-sm-12">
+                    <h1 id="art-history-data">Art history Data</h1>
 <p><em>CRM modelling &amp; examples</em></p>
 <h2 id="name">Name</h2>
 <p>A name is an identifier of a person which refers to an agent in a specific moment in time (it is important to remember that it can change over time, see the case of <em>Prince</em>). A person's name in CRM can be model differently accordingly to our intention, as well as on the granularity of the information we want to map.</p>
@@ -252,31 +246,30 @@ owl:sameas "http://vocab.getty.edu/ulan/500004700" .</code></pre>
 </li>
 </ol>
 </div>
-                    </div>
+                </section>
 
-                    <footer>
-                        <hr/>
-                                                Built with <a href="http://couscous.io/">Couscous</a> using a <a href="https://github.com/CouscousPHP/Template-ReadTheDocs">theme</a> based on <a href="https://readthedocs.org/">Read the Docs</a>.
-                    </footer>
-
-                </div>
             </div>
+        </main>
 
-        </section>
+        <footer>
+            <div class="container">
+                <p class="text-muted">
+                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
+                </p>
+            </div>
+        </footer>
 
-    </div>
+        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
 
-    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
-    <script src="https://ncarboni.github.io/arthistorydata/js/theme.js"></script>
+        <script>
+            $(function() {
+                $("section>h1").wrap('<div class="page-header" />');
+                // Syntax highlighting
+                hljs.initHighlightingOnLoad();
+            });
+        </script>
 
-    <script>
-        $(function() {
-            // Syntax highlighting
-            hljs.initHighlightingOnLoad();
-        });
-    </script>
-
-</body>
+    </body>
 </html>
