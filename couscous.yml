@@ -2,7 +2,7 @@ template:
     # Name of the directory containing the website template (default is "website")
     #directory: website
     # Or if you are using a remote template, you can set the Git URL
-    url: https://github.com/CouscousPHP/Template-Light.git
+    url: https://github.com/CouscousPHP/Template-Light
     # Name of the index file (default is "README.md")
     index: modelling.md
 
@@ -34,14 +34,15 @@ branch: gh-pages
 
 # Base URL of the published website (no "/" at the end!)
 # You are advised to set and use this variable to write your links in the HTML layouts
-#baseUrl: https://ncarboni.github.io/arthistorydata/
+baseUrl: https://ncarboni.github.io/arthistorydata
 
 
 # Used to link to the GitHub project
-#github:
-#    user: ncarboni
-#    repo: arthistorydata
+github:
+    user: ncarboni
+    repo: arthistorydata
 
 title: Art History Data
 subTitle: CIDOC-CRM harmonisation group
+
 
