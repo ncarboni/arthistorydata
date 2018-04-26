@@ -18,7 +18,9 @@ Possible modelling of the preferred name are:
 1. **E21 Person → L4 has preferred label → rdfs:Literal**
 2. **E21 Person → skos:prefLabel → rdfs:Literal**
 
-The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. The form preferred by I Tatti is the number 2 (_see the code block_). The reason is mainly because it employs SKOS, which we use in other part of the modelling. Moreover SKOS is more used globally.
+The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. 
+
+> <mark>The form chosen by **I Tatti** </mark> is the number 2 (_see the code block_). The reason is mainly because it employs SKOS, which we use in other part of the modelling. Moreover SKOS is more used globally.
 
 ```xml-dtd
 skos:prefLabel "Giovanni da Udine" .
@@ -35,7 +37,8 @@ Possible modelling of the name are:
 
 The main differences between the three is that example 1 treat the appellation not as a literal but as an entity which has a literal. Thus we can express statements about E41 Appellation, such as when it was used, how it come to be, where this form originate and others of such type.
 
-The form chosen by I Tatti is the number 3 (_see the code block_). The reason is very practical. There was no need to express statements about the name itself, and the use of rdfs:label is preferable as a system level (_metaphacts_) in respect to crm:P1_is_identified_by . 
+> <mark>The form chosen by **I Tatti**</mark> is the number 3 (_see the code block_). The reason is very practical. There was no need to express statements about the name itself, and the use of rdfs:label is preferable as a system level (_metaphacts_) in respect to crm:P1_is_identified_by . 
+>
 
 
 ```xml-dtd
@@ -63,7 +66,8 @@ crm:P1_is_identified_by "B00000737" ;
 crm:P48_has_preferred_identifier "A00000737" ;
 ```
 
-
+> <mark>Both form are employed by **ITatti**</mark>
+>
 
 ## Time
 
@@ -146,7 +150,8 @@ wgs:lat "60.1701801" ;
 wgs:long “24.9419037" .
 ```
 
-This solution is, for us, the most satisfying, because it clarify the properties and it is properly mapped to CRM. Moreover Geo is, by far, the most used geographical ontology in the Linked Data  cloud [^1].
+> This solution number 3 is <mark>the one chosen by **I Tatti**</mark>, because it clarify the properties and it is properly mapped to CRM. Moreover Geo is, by far, the most used geographical ontology in the Linked Data  cloud [^1].
+>
 
 ## OWL sameAs
 
