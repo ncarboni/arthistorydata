@@ -44,7 +44,10 @@
 <li><strong>E21 Person → L4 has preferred label → rdfs:Literal</strong></li>
 <li><strong>E21 Person → skos:prefLabel → rdfs:Literal</strong></li>
 </ol>
-<p>The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. The form preferred by I Tatti is the number 2 (<em>see the code block</em>). The reason is mainly because it employs SKOS, which we use in other part of the modelling. Moreover SKOS is more used globally.</p>
+<p>The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. </p>
+<blockquote>
+<p><mark>The form chosen by <strong>I Tatti</strong> </mark> is the number 2 (<em>see the code block</em>). The reason is mainly because it employs SKOS, which we use in other part of the modelling. Moreover SKOS is more used globally.</p>
+</blockquote>
 <pre><code class="language-xml-dtd">skos:prefLabel "Giovanni da Udine" .</code></pre>
 <h3 id="name-1">Name</h3>
 <p>Possible modelling of the name are:</p>
@@ -54,7 +57,9 @@
 <li><strong>E21 Person → P1 is identified by → rdfs:Literal</strong></li>
 </ol>
 <p>The main differences between the three is that example 1 treat the appellation not as a literal but as an entity which has a literal. Thus we can express statements about E41 Appellation, such as when it was used, how it come to be, where this form originate and others of such type.</p>
-<p>The form chosen by I Tatti is the number 3 (<em>see the code block</em>). The reason is very practical. There was no need to express statements about the name itself, and the use of rdfs:label is preferable as a system level (<em>metaphacts</em>) in respect to crm:P1_is_identified_by . </p>
+<blockquote>
+<p><mark>The form chosen by <strong>I Tatti</strong></mark> is the number 3 (<em>see the code block</em>). The reason is very practical. There was no need to express statements about the name itself, and the use of rdfs:label is preferable as a system level (<em>metaphacts</em>) in respect to crm:P1_is_identified_by . </p>
+</blockquote>
 <pre><code class="language-xml-dtd">a crm:E21_Person ;
 rdfs:label "Giovanni da Udine" .</code></pre>
 <h2 id="identifier">Identifier</h2>
@@ -66,6 +71,9 @@ rdfs:label "Giovanni da Udine" .</code></pre>
 </ol>
 <pre><code class="language-xml-dtd">crm:P1_is_identified_by "B00000737" ;</code></pre>
 <pre><code class="language-xml-dtd">crm:P48_has_preferred_identifier "A00000737" ;</code></pre>
+<blockquote>
+<p><mark>Both form are employed by <strong>ITatti</strong></mark></p>
+</blockquote>
 <h2 id="time">Time</h2>
 <p>Time is treated quite profoundly in CRM and diverse can be the time representations as well as time expression that the model offer. A possible summarisation of these approaches is outside the scope of the document but the one interested could consult the resource <strong>list resources</strong></p>
 <p>Such a diverse approach allow for a great diversity in the mapping:</p>
@@ -147,7 +155,9 @@ crm:P87_is_identified_by https://collection.itatti.harvard.edu/resource/ex/place
 a wgs:Point;
 wgs:lat "60.1701801" ;
 wgs:long “24.9419037" .</code></pre>
-<p>This solution is, for us, the most satisfying, because it clarify the properties and it is properly mapped to CRM. Moreover Geo is, by far, the most used geographical ontology in the Linked Data  cloud <sup id="fnref1:1"><a href="#fn:1" class="footnote-ref">4</a></sup>.</p>
+<blockquote>
+<p>This solution number 3 is <mark>the one chosen by <strong>I Tatti</strong></mark>, because it clarify the properties and it is properly mapped to CRM. Moreover Geo is, by far, the most used geographical ontology in the Linked Data  cloud <sup id="fnref1:1"><a href="#fn:1" class="footnote-ref">4</a></sup>.</p>
+</blockquote>
 <h2 id="owl-sameas">OWL sameAs</h2>
 <p>A specific paragraph should be dedicated to owl:sameas which is probably one of the most used element in owl, and a way to connected entities between diverse graph.</p>
 <pre><code class="language-xml-dtd">https://collection.itatti.harvard.edu/resource/person/example
