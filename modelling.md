@@ -1,4 +1,4 @@
-#  Art history Data
+# Art history Data
 
 *CRM modelling & examples*
 
@@ -39,6 +39,17 @@ The main differences between the three is that example 1 treat the appellation n
 
 > <mark>The form chosen by **I Tatti**</mark> is the number 3 (_see the code block_). The reason is very practical. There was no need to express statements about the name itself, and the use of rdfs:label is preferable as a system level (_metaphacts_) in respect to crm:P1_is_identified_by . 
 >
+> The possibility of adding rdfs:label to each class in CRM was a specification which was modelled as such:
+>
+> ```xml-dtd
+> <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
+> 		<rdfs:domain rdf:resource="E1_CRM_Entity"/>
+> 		<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
+> 	</rdf:Property>
+> ```
+>
+> and added to the schema. The result is that each rdfs:label would be a property of crm:E1_CRM_Entity, and subsequently to each of the subclasses of E1. The rationale behind is that crm:E1_CRM_Entity has as a property crm:P1_is_identified_by, which is completely equivalent to rdfs:label. 
+> The consequence is the possibility to use rdfs:label instead of crm:P1_is_identified_by for each of the class in CRM
 
 
 ```xml-dtd
@@ -104,7 +115,7 @@ We will see them in more details
 | Entity    | Relationship         | Entity                  | Relationship | Entity       |
 | --------- | -------------------- | ----------------------- | ------------ | ------------ |
 | E53 Place | P87 is identified by | E47 Spatial Coordinates | rdfs:Label   | rdfs:Literal |
-|           |                      |                         | P2 has type  | rdfs:Literal |
+|           |                      | ⮑                       | P2 has type  | rdfs:Literal |
 
 
 ```xml-dtd
@@ -163,6 +174,58 @@ owl:sameas "http://vocab.getty.edu/ulan/500004700" .
 ```
 
 Its popularity has made it particularly misused, and it is better to remind everyone (author included) that for linking entities which are not exactly the same[^2] other properties are available, such as skos:exactMatch which should be considered always as possible alternative.
+
+
+
+## Dimension/Quantity
+
+Dimension are quantifiable property which derived by an act of observation. The result of an observation is always a couple value/system which can be modelled in CRM as:
+
+**E54 Dimension → P91 has unit →  E58 Measurement Unit →  rdfs:Label →  rdfs:Literal**
+
+**E54 Dimension → P90 has value →  E60 Number →  rdf:value →  rdfs:Literal**
+
+```xml-dtd
+https://collection.itatti.harvard.edu/resource/dimension/example a crm:E54_Dimension ;
+rdf:value	"6" ;
+rdf:literal	"centimeters" .
+```
+
+The modelling above is based on the differentiation between the value and the system which provide meaning to the value. This type of statements works if there is no real need of a proper measurement analysis or comparison. rdf:value and rdfs:literal are, in fact, quite neutral:
+
+* rdf:value can be used to describe structural value, bu carries no meaning of its own.  
+* rdfs:literal is just a class of literal value, and has no connection to any type of structured measurement unit.
+
+Depending on the needs, the solution to this problem could be resolved using rdfs:isDefinedby plus an external authority for the measurement unit.
+
+```xml-dtd
+https://collection.itatti.harvard.edu/resource/dimension/example a crm:E54_Dimension ;
+rdf:value	"6" ;
+rdfs:isDefinedBy "http://qudt.org/vocab/unit/CM" ;
+crm:P2_has_type “width" .
+```
+
+In the above example we use QUDT as authority for the centimeters unit. QUDT is the "Quantity, Unit, Dimension and Type" schema used for modeling physical measurable properties in a machine processable form, with no ambiguities. QUDT does not only provide a basic vocabulary of units, but it is also a formal ontology used for dimensional modelling. A NASA-sponsored initiative provide a clearer way to fix quantities, value and dimension to meaning-provider system as well as compare and convert quanty information. 
+
+QUDT seems to be the perfect candidate for representing dimensionla data, however it is not yet mapped with CRM. From an initial analysis appear that crm:E54_Dimension correspond to the qudt:Quantity class, and not on qudt:Dimension as the label suggest. The class qudt:Dimension is, in fact, a relationship between "*a quantity systems, a quantity kind of that system, and one or more dimension vectors. The dimension of a quantity can be expressed as a product of basic dimension vectors for each of the system's base quantiy kinds, such as mass, length and time*".
+
+It is possible to map qudt:Quantity as a subclass of crm:E54_Dimension:
+
+```xml-dtd
+<rdfs:Class rdf:about="http://qudt.org/schema/qudt/Quantity">
+		<rdfs:subClassOf rdf:resource="crm:E54_Dimension"/>
+	</rdfs:Class>
+```
+
+And then state:
+
+**qudt:Quantity → qudt:quantityValue  → qudt:QuantityValue → qudt:numericValue  → xsd:double**
+
+**qudt:QuantityValue → qudt:unit → <http://qudt.org/vocab/unit/CM> **
+
+**qudt:Quantity → qudt:hasQuantityKind → qudt:QuantityKind → qudt:description →  "Height"**
+
+
 
 # Bibliographic Data
 
