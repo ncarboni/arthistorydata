@@ -59,6 +59,13 @@
 <p>The main differences between the three is that example 1 treat the appellation not as a literal but as an entity which has a literal. Thus we can express statements about E41 Appellation, such as when it was used, how it come to be, where this form originate and others of such type.</p>
 <blockquote>
 <p><mark>The form chosen by <strong>I Tatti</strong></mark> is the number 3 (<em>see the code block</em>). The reason is very practical. There was no need to express statements about the name itself, and the use of rdfs:label is preferable as a system level (<em>metaphacts</em>) in respect to crm:P1_is_identified_by . </p>
+<p>The possibility of adding rdfs:label to each class in CRM was a specification which was modelled as such:</p>
+<pre><code class="language-xml-dtd">&lt;rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label"&gt;
+      &lt;rdfs:domain rdf:resource="E1_CRM_Entity"/&gt;
+      &lt;rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/&gt;
+  &lt;/rdf:Property&gt;</code></pre>
+<p>and added to the schema. The result is that each rdfs:label would be a property of crm:E1_CRM_Entity, and subsequently to each of the subclasses of E1. The rationale behind is that crm:E1_CRM_Entity has as a property crm:P1_is_identified_by, which is completely equivalent to rdfs:label.
+The consequence is the possibility to use rdfs:label instead of crm:P1_is_identified_by for each of the class in CRM</p>
 </blockquote>
 <pre><code class="language-xml-dtd">a crm:E21_Person ;
 rdfs:label "Giovanni da Udine" .</code></pre>
@@ -119,7 +126,7 @@ crm:P80_end_is_qualified_by  "1700"^^xsd:gYear .</code></pre>
 <tr>
 <td></td>
 <td></td>
-<td></td>
+<td>⮑</td>
 <td>P2 has type</td>
 <td>rdfs:Literal</td>
 </tr>
@@ -163,6 +170,33 @@ wgs:long “24.9419037" .</code></pre>
 <pre><code class="language-xml-dtd">https://collection.itatti.harvard.edu/resource/person/example
 owl:sameas "http://vocab.getty.edu/ulan/500004700" .</code></pre>
 <p>Its popularity has made it particularly misused, and it is better to remind everyone (author included) that for linking entities which are not exactly the same<sup id="fnref1:2"><a href="#fn:2" class="footnote-ref">5</a></sup> other properties are available, such as skos:exactMatch which should be considered always as possible alternative.</p>
+<h2 id="dimensionquantity">Dimension/Quantity</h2>
+<p>Dimension are quantifiable property which derived by an act of observation. The result of an observation is always a couple value/system which can be modelled in CRM as:</p>
+<p><strong>E54 Dimension → P91 has unit →  E58 Measurement Unit →  rdfs:Label →  rdfs:Literal</strong></p>
+<p><strong>E54 Dimension → P90 has value →  E60 Number →  rdf:value →  rdfs:Literal</strong></p>
+<pre><code class="language-xml-dtd">https://collection.itatti.harvard.edu/resource/dimension/example a crm:E54_Dimension ;
+rdf:value   "6" ;
+rdf:literal "centimeters" .</code></pre>
+<p>The modelling above is based on the differentiation between the value and the system which provide meaning to the value. This type of statements works if there is no real need of a proper measurement analysis or comparison. rdf:value and rdfs:literal are, in fact, quite neutral:</p>
+<ul>
+<li>rdf:value can be used to describe structural value, bu carries no meaning of its own.  </li>
+<li>rdfs:literal is just a class of literal value, and has no connection to any type of structured measurement unit.</li>
+</ul>
+<p>Depending on the needs, the solution to this problem could be resolved using rdfs:isDefinedby plus an external authority for the measurement unit.</p>
+<pre><code class="language-xml-dtd">https://collection.itatti.harvard.edu/resource/dimension/example a crm:E54_Dimension ;
+rdf:value   "6" ;
+rdfs:isDefinedBy "http://qudt.org/vocab/unit/CM" ;
+crm:P2_has_type “width" .</code></pre>
+<p>In the above example we use QUDT as authority for the centimeters unit. QUDT is the &quot;Quantity, Unit, Dimension and Type&quot; schema used for modeling physical measurable properties in a machine processable form, with no ambiguities. QUDT does not only provide a basic vocabulary of units, but it is also a formal ontology used for dimensional modelling. A NASA-sponsored initiative provide a clearer way to fix quantities, value and dimension to meaning-provider system as well as compare and convert quanty information. </p>
+<p>QUDT seems to be the perfect candidate for representing dimensionla data, however it is not yet mapped with CRM. From an initial analysis appear that crm:E54_Dimension correspond to the qudt:Quantity class, and not on qudt:Dimension as the label suggest. The class qudt:Dimension is, in fact, a relationship between &quot;<em>a quantity systems, a quantity kind of that system, and one or more dimension vectors. The dimension of a quantity can be expressed as a product of basic dimension vectors for each of the system's base quantiy kinds, such as mass, length and time</em>&quot;.</p>
+<p>It is possible to map qudt:Quantity as a subclass of crm:E54_Dimension:</p>
+<pre><code class="language-xml-dtd">&lt;rdfs:Class rdf:about="http://qudt.org/schema/qudt/Quantity"&gt;
+        &lt;rdfs:subClassOf rdf:resource="crm:E54_Dimension"/&gt;
+    &lt;/rdfs:Class&gt;</code></pre>
+<p>And then state:</p>
+<p><strong>qudt:Quantity → qudt:quantityValue  → qudt:QuantityValue → qudt:numericValue  → xsd:double</strong></p>
+<p><strong>qudt:QuantityValue → qudt:unit → <a href="http://qudt.org/vocab/unit/CM">http://qudt.org/vocab/unit/CM</a> </strong></p>
+<p><strong>qudt:Quantity → qudt:hasQuantityKind → qudt:QuantityKind → qudt:description →  &quot;Height&quot;</strong></p>
 <h1 id="bibliographic-data">Bibliographic Data</h1>
 <p>We model bibliographic data using <a href="http://www.cidoc-crm.org/frbroo/">FRBRoo</a>, the CIDOC-CRM extension for bibliographic data. We demonstrate the modelling of a printed book, but the approach can be adapted to similar items of expressive matters, such as letters, manuscripts, recordings, etc.</p>
 <p>Note: the information here is based on FRBRoo 2.4, which is the latest release at the time of writing. FRBRoo 3.0 is currently under development.</p>
