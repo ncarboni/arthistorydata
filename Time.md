@@ -54,31 +54,3 @@ CIDOC-CRM
 
 
 
-CIDOC conceptual Reference Model frame the observations using time-intervasl which are expressed using several properties. 
-
-
-
-
-
-
-
-Study of the past is intertwined with temporal imprecision and incompleteness!
-
-
-
-However, observation-driven elds such as stratigraphy, often extract vague
-
-and sparse information about the modeled temporal entities. This is hindered
-
-by the use of Allen operators, since they bound to the requirement of complete
-
-temporal knowledge. Additionally, there are several cases in which semantic asso-
-
-ciations between coherent phenomena can reveal only a fraction of their possible
-
-temporal relation. Consequently, the representative Allen operators that describe
-
-the concluded association form a set of possible alternative scenarios of temporal
-
-relations, which blurs the total image.
-
