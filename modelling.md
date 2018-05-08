@@ -17,6 +17,7 @@ Possible modelling of the preferred name are:
 
 1. **E21 Person → L4 has preferred label → rdfs:Literal**
 2. **E21 Person → skos:prefLabel → rdfs:Literal**
+2. **E21 Person → P3_has_note → rdfs:Literal**
 
 The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. 
 
@@ -25,7 +26,12 @@ The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMD
 ```xml-dtd
 skos:prefLabel "Giovanni da Udine" .
 ```
+> <mark>The form chosen by **SARI** </mark> is the number 3 (_see the code block_). On top of having all appellations separately modelled, we attach the preferred one directly to the actor with P3_has_note and rdf:value. 
 
+```xml-dtd
+crm:E39_Actor crm:P3_has_note rdfs:Literal.
+crm:E39_Actor rdf:value rdfs:Literal.
+```
 
 
 
