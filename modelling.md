@@ -95,7 +95,8 @@ crm:P48_has_preferred_identifier "A00000737" ;
 ```
 
 > <mark>Both form are employed by **ITatti**</mark>
->
+
+
 > <mark>The form chosen by **SARI**</mark> is the number 3 (_see the code block_)
 >
 
@@ -106,13 +107,21 @@ Time is treated quite profoundly in CRM and diverse can be the time representati
 Such a diverse approach allow for a great diversity in the mapping:
 
 1. **E12 Production→ P4 has time-span → E52 Time-Span → P79 beginning is qualified by → xsd:gYear / E12 Production→ P4 has time-span → E52 Time-Span → P80 end is qualified by → xsd:gYear**
+2. **E12 Production→ P4 has time-span → E52 Time-Span → P79 beginning is qualified by → xsd:dateTime / E12 Production→ P4 has time-span → E52 Time-Span → P80 end is qualified by → xsd:dateTime**
 
 ```xml-dtd
- a crm:E225_Time-Span ;
+ a crm:E52_Time-Span ;
 crm:P79_beginning_is_qualified_by "1401"^^xsd:gYear ;
 crm:P80_end_is_qualified_by  "1700"^^xsd:gYear .
 ```
 
+> <mark>The form chosen by **SARI**</mark> is the number 2, because the majority of our dates include day, month and year. 
+>
+```xml-dtd
+crm:E12_Production crm:P4_has_time-span crm:E52_Time-Span. 
+crm:E52_Time-Span crm:P79_beginning_is_qualified_by "2001-10-21T21:32:52"^^xsd:dateTime.
+crm:E52_Time-Span crm:P80_end_is_qualified_by  "2001-10-26T00:00:00"^^xsd:dateTime.
+```
 
 
 ## Place
