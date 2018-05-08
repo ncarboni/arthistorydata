@@ -81,7 +81,9 @@ A object can has multiple identifiers which we want to link to. An easy example 
 Possible modelling in CRM are:
 
 1. **E21 Person → P48 has preferred identifier → rdfs:Literal** (_see the code block number 1_)
-2. **E21 Person → P1 is identified by→ rdfs:Literal** (_see the code block number 2_)
+2. **E21 Person → P1 is identified by → rdfs:Literal** (_see the code block number 2_)
+3. **E21 Person → P1 is identified by → E42 Identifier → P3 has note | rdf:value → rdfs:Literal** (_see the code block number 3_)
+
 
 ```xml-dtd
 crm:P1_is_identified_by "B00000737" ;
@@ -93,6 +95,8 @@ crm:P48_has_preferred_identifier "A00000737" ;
 ```
 
 > <mark>Both form are employed by **ITatti**</mark>
+>
+> <mark>The form chosen by **SARI**</mark> is the number 3 (_see the code block_)
 >
 
 ## Time
