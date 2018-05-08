@@ -17,7 +17,7 @@ Possible modelling of the preferred name are:
 
 1. **E21 Person → L4 has preferred label → rdfs:Literal**
 2. **E21 Person → skos:prefLabel → rdfs:Literal**
-2. **E21 Person → P3_has_note → rdfs:Literal**
+2. **E21 Person → P3_has_note|rdf:value → rdfs:Literal**
 
 The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. 
 
