@@ -5,7 +5,7 @@
 
 
 
-## Name
+## Name of Actor 
 
 A name is an identifier of a person which refers to an agent in a specific moment in time (it is important to remember that it can change over time, see the case of _Prince_). A person's name in CRM can be model differently accordingly to our intention, as well as on the granularity of the information we want to map.
 
@@ -27,7 +27,9 @@ skos:prefLabel "Giovanni da Udine" .
 ```
 
 
-### Name
+
+
+### Name of Actor
 
 Possible modelling of the name are:
 
@@ -57,7 +59,14 @@ a crm:E21_Person ;
 rdfs:label "Giovanni da Udine" .
 ```
 
+> <mark>The form chosen by **SARI**</mark> is the number 1 (_see the code block_). But on top of property crm:P3_has_note also rdf:value is used.
 
+```xml-dtd
+crm:E39_Actor a crm:E21_Person.
+crm:E39_Actor crm:P1_is_identified_by crm:E82_Actor_Appellation.
+crm:E82_Actor_Appellation crm:P3_has_note rdfs:Literal.
+crm:E82_Actor_Appellation rdf:value rdfs:Literal.
+```
 
 ## Identifier
 
