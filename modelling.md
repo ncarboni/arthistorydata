@@ -29,8 +29,8 @@ skos:prefLabel "Giovanni da Udine" .
 > <mark>The form chosen by **SARI** </mark> is the number 3 (_see the code block_). On top of having all appellations separately modelled, we attach the preferred one directly to the actor with P3_has_note and rdf:value. 
 
 ```xml-dtd
-crm:E39_Actor crm:P3_has_note "Semper, Gottfried".
-crm:E39_Actor rdf:value "Semper, Gottfried".
+crm:E21_Person crm:P3_has_note "Semper, Gottfried".
+crm:E21_Person rdf:value "Semper, Gottfried".
 ```
 
 
@@ -68,8 +68,7 @@ rdfs:label "Giovanni da Udine" .
 > <mark>The form chosen by **SARI**</mark> is the number 1. But on top of property crm:P3_has_note also rdf:value is used.
 
 ```xml-dtd
-crm:E39_Actor a crm:E21_Person.
-crm:E39_Actor crm:P1_is_identified_by crm:E82_Actor_Appellation.
+crm:E21_Person crm:P1_is_identified_by crm:E82_Actor_Appellation.
 crm:E82_Actor_Appellation crm:P3_has_note "Semper, Gottfried".
 crm:E82_Actor_Appellation rdf:value "Semper, Gottfried".
 ```
@@ -100,7 +99,6 @@ crm:P48_has_preferred_identifier "A00000737" ;
 > <mark>The form chosen by **SARI**</mark> is the number 3.
 
 ```xml-dtd
-crm:E39_Actor a crm:E21_Person.
 crm:E21_Person crm:P1_is_identified_by crm:E42_Identifier.
 crm:E42_Identifier crm:P3_has_note "d701b57c-41a8-4ded-b411-08bcfdf01682".
 crm:E42_Identifier rdf:value "d701b57c-41a8-4ded-b411-08bcfdf01682".
