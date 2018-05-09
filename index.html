@@ -35,7 +35,7 @@
                 <section id="content" class="col-sm-12">
                     <h1 id="art-history-data">Art history Data</h1>
 <p><em>CRM modelling &amp; examples</em></p>
-<h2 id="name">Name</h2>
+<h2 id="name-of-actor">Name of Actor</h2>
 <p>A name is an identifier of a person which refers to an agent in a specific moment in time (it is important to remember that it can change over time, see the case of <em>Prince</em>). A person's name in CRM can be model differently accordingly to our intention, as well as on the granularity of the information we want to map.</p>
 <p>More than one name can be linked to one person, and one person can be known with diverse name, both during its life and after. The very first thing we should ask ourself is if the name we are modelling is the preferred name of that person or not. We will see examples of both.</p>
 <h3 id="preferred-name">Preferred Name</h3>
@@ -43,13 +43,19 @@
 <ol>
 <li><strong>E21 Person → L4 has preferred label → rdfs:Literal</strong></li>
 <li><strong>E21 Person → skos:prefLabel → rdfs:Literal</strong></li>
+<li><strong>E21 Person → P3_has_note|rdf:value → rdfs:Literal</strong></li>
 </ol>
 <p>The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. </p>
 <blockquote>
 <p><mark>The form chosen by <strong>I Tatti</strong> </mark> is the number 2 (<em>see the code block</em>). The reason is mainly because it employs SKOS, which we use in other part of the modelling. Moreover SKOS is more used globally.</p>
 </blockquote>
 <pre><code class="language-xml-dtd">skos:prefLabel "Giovanni da Udine" .</code></pre>
-<h3 id="name-1">Name</h3>
+<blockquote>
+<p><mark>The form chosen by <strong>SARI</strong> </mark> is the number 3 (<em>see the code block</em>). On top of having all appellations separately modelled, we attach the preferred one directly to the actor with P3_has_note and rdf:value. </p>
+</blockquote>
+<pre><code class="language-xml-dtd">crm:E21_Person crm:P3_has_note "Semper, Gottfried".
+crm:E21_Person rdf:value "Semper, Gottfried".</code></pre>
+<h3 id="name-of-actor-1">Name of Actor</h3>
 <p>Possible modelling of the name are:</p>
 <ol>
 <li><strong>E21 Person → P1 is identified by → E41 Appellation → P3 has note → rdfs:Literal</strong></li>
@@ -69,27 +75,45 @@ The consequence is the possibility to use rdfs:label instead of crm:P1_is_identi
 </blockquote>
 <pre><code class="language-xml-dtd">a crm:E21_Person ;
 rdfs:label "Giovanni da Udine" .</code></pre>
+<blockquote>
+<p><mark>The form chosen by <strong>SARI</strong></mark> is the number 1. But on top of property crm:P3_has_note also rdf:value is used.</p>
+</blockquote>
+<pre><code class="language-xml-dtd">crm:E21_Person crm:P1_is_identified_by crm:E82_Actor_Appellation.
+crm:E82_Actor_Appellation crm:P3_has_note "Semper, Gottfried".
+crm:E82_Actor_Appellation rdf:value "Semper, Gottfried".</code></pre>
 <h2 id="identifier">Identifier</h2>
 <p>A object can has multiple identifiers which we want to link to. An easy example would be Michelangelo, which has an internal identifier, a page on wikidata with his own identifier, as well as another one on ULAN. We can chose to define them and chose a preferred one. </p>
 <p>Possible modelling in CRM are:</p>
 <ol>
 <li><strong>E21 Person → P48 has preferred identifier → rdfs:Literal</strong> (<em>see the code block number 1</em>)</li>
-<li><strong>E21 Person → P1 is identified by→ rdfs:Literal</strong> (<em>see the code block number 2</em>)</li>
+<li><strong>E21 Person → P1 is identified by → rdfs:Literal</strong> (<em>see the code block number 2</em>)</li>
+<li><strong>E21 Person → P1 is identified by → E42 Identifier → P3 has note | rdf:value → rdfs:Literal</strong> (<em>see the code block number 3</em>)</li>
 </ol>
 <pre><code class="language-xml-dtd">crm:P1_is_identified_by "B00000737" ;</code></pre>
 <pre><code class="language-xml-dtd">crm:P48_has_preferred_identifier "A00000737" ;</code></pre>
 <blockquote>
 <p><mark>Both form are employed by <strong>ITatti</strong></mark></p>
+<p><mark>The form chosen by <strong>SARI</strong></mark> is the number 3.</p>
 </blockquote>
+<pre><code class="language-xml-dtd">crm:E21_Person crm:P1_is_identified_by crm:E42_Identifier.
+crm:E42_Identifier crm:P3_has_note "d701b57c-41a8-4ded-b411-08bcfdf01682".
+crm:E42_Identifier rdf:value "d701b57c-41a8-4ded-b411-08bcfdf01682".</code></pre>
 <h2 id="time">Time</h2>
 <p>Time is treated quite profoundly in CRM and diverse can be the time representations as well as time expression that the model offer. A possible summarisation of these approaches is outside the scope of the document but the one interested could consult the resource <strong>list resources</strong></p>
 <p>Such a diverse approach allow for a great diversity in the mapping:</p>
 <ol>
 <li><strong>E12 Production→ P4 has time-span → E52 Time-Span → P79 beginning is qualified by → xsd:gYear / E12 Production→ P4 has time-span → E52 Time-Span → P80 end is qualified by → xsd:gYear</strong></li>
+<li><strong>E12 Production→ P4 has time-span → E52 Time-Span → P79 beginning is qualified by → xsd:dateTime / E12 Production→ P4 has time-span → E52 Time-Span → P80 end is qualified by → xsd:dateTime</strong></li>
 </ol>
-<pre><code class="language-xml-dtd"> a crm:E225_Time-Span ;
+<pre><code class="language-xml-dtd"> a crm:E52_Time-Span ;
 crm:P79_beginning_is_qualified_by "1401"^^xsd:gYear ;
 crm:P80_end_is_qualified_by  "1700"^^xsd:gYear .</code></pre>
+<blockquote>
+<p><mark>The form chosen by <strong>SARI</strong></mark> is the number 2, because the majority of our dates include day, month and year. </p>
+<pre><code class="language-xml-dtd">crm:E12_Production crm:P4_has_time-span crm:E52_Time-Span. 
+crm:E52_Time-Span crm:P79_beginning_is_qualified_by "2001-10-21T21:32:52"^^xsd:dateTime.
+crm:E52_Time-Span crm:P80_end_is_qualified_by  "2001-10-26T00:00:00"^^xsd:dateTime.</code></pre>
+</blockquote>
 <h2 id="place">Place</h2>
 <p>Place is another important feature we should harmonise. Diverse are the possibilities, both inside and outside CRM. The latter offers an extension called CRMGeo that harmonise CRM with GeoSparql and offer a nice representation of the geographical features with a rich semantics. However the adoption is limited and the learning curve is steep. Other option are offered in CRM, which allow the expression of simple statements about place. </p>
 <p>The identified mapping options are:</p>
