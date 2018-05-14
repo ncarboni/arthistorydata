@@ -6,13 +6,14 @@ Ontologically speaking, the Time dimension is quite a complicated affair. Time, 
 
 The problem was originally solved, at least for calculus, by Allen in 1983. In order to overcome the calculation problem, Allen defined seven relationships useful for reasoning about time intervals (X, Y):
 
-1. X before Y (P120)
-2. X meets Y (P119)
-3. X overlaps Y (P118)
-4. X during Y (P117)
-5. X starts Y (P116)
-6. X finishes Y (P115)
-7. X equals Y (P114)
+​	* X before Y (P120)
+
+1. X meets Y (P119)
+2. X overlaps Y (P118)
+3. X during Y (P117)
+4. X starts Y (P116)
+5. X finishes Y (P115)
+6. X equals Y (P114)
 
 CIDOC-CRM was heavily influenced by this approach, and the properties associated with the Temporal entity in CRM refer exactly to these relationships.
 

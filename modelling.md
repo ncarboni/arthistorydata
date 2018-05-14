@@ -2,188 +2,216 @@
 
 *CRM modelling & examples*
 
+The document outlines modelling choices in relation to diverse entities described in the Consortium's data. The modelling is provided, whenever possible, using CIDOC-CRM. However, in certain cases other ontologies are used. For each of the described entities diverse encoding choices were outlined, and decision about them were made. Scope of this document is not to provide a track of this process, but just to present its results. However, even if not present here, the documentation of the possible modelling and encoding of an entity in RDF can be found in the [Annex A](Annex.md).
 
+For each entity, as an example of its use, an RDF encoding of a real-world statements is provided. The syntax of the encoding is Turtle, and all the prefix used can be found on http://prefix.cc/ .
 
+## Appellation 
 
-## Name of Actor 
+#### Note
 
-A name is an identifier of a person which refers to an agent in a specific moment in time (it is important to remember that it can change over time, see the case of _Prince_). A person's name in CRM can be model differently accordingly to our intention, as well as on the granularity of the information we want to map.
+An appelation is a sign, usually in the form of a string of characters, used for referencing an entity (person object, place, an event etc.). More appellations can refer, in the same language, to the same entity, as in the case of:
 
-More than one name can be linked to one person, and one person can be known with diverse name, both during its life and after. The very first thing we should ask ourself is if the name we are modelling is the preferred name of that person or not. We will see examples of both.
+> Monna Lisa or La Gioconda. which both refers to the same painting
 
-### Preferred Name
+Appellations can also be tied to a specific time interval, such as in the case of:
 
-Possible modelling of the preferred name are:
+> Prince, Alexander Nevermind, The Artist, The Artist Formerly Known as Prince (TAFKAP), Camille, Christopher, Tracy Jamie Starr, Joey Coco, Tora Tora, The Kid — which refers to Prince Rogers Nelson in diverse moments of his career
 
-1. **E21 Person → L4 has preferred label → rdfs:Literal**
-2. **E21 Person → skos:prefLabel → rdfs:Literal**
-2. **E21 Person → P3_has_note|rdf:value → rdfs:Literal**
+However, If more appellations can cohexist, a chosen one should be defined using a different property which identifies it with our <u>preferred</u> appellation.
 
-The main difference is that the 1 statements is encoded using CIDOC-CRM and CRMDig, while the second use SKOS. 
+### Appellation
 
-> <mark>The form chosen by **I Tatti** </mark> is the number 2 (_see the code block_). The reason is mainly because it employs SKOS, which we use in other part of the modelling. Moreover SKOS is more used globally.
+A simple appellation can be modelled in CRM as
 
-```xml-dtd
-skos:prefLabel "Giovanni da Udine" .
-```
-> <mark>The form chosen by **SARI** </mark> is the number 3 (_see the code block_). On top of having all appellations separately modelled, we attach the preferred one directly to the actor with P3_has_note and rdf:value. 
+**E21 Person → P1 is identified by → E41 Appellation**
 
-```xml-dtd
-crm:E21_Person crm:P3_has_note "Semper, Gottfried".
-crm:E21_Person rdf:value "Semper, Gottfried".
-```
+The encoding of the string of characters of the appellation can be done in multiple ways. The form chosen by the consortium is:
 
-
-
-### Name of Actor
-
-Possible modelling of the name are:
-
-1. **E21 Person → P1 is identified by → E41 Appellation → P3 has note → rdfs:Literal**
-2. **E21 Person → rdfs:Label → rdfs:Literal**
-3. **E21 Person → P1 is identified by → rdfs:Literal**
-
-The main differences between the three is that example 1 treat the appellation not as a literal but as an entity which has a literal. Thus we can express statements about E41 Appellation, such as when it was used, how it come to be, where this form originate and others of such type.
-
-> <mark>The form chosen by **I Tatti**</mark> is the number 3 (_see the code block_). The reason is very practical. There was no need to express statements about the name itself, and the use of rdfs:label is preferable as a system level (_metaphacts_) in respect to crm:P1_is_identified_by . 
->
-> The possibility of adding rdfs:label to each class in CRM was a specification which was modelled as such:
->
-> ```xml-dtd
-> <rdf:Property rdf:about="http://www.w3.org/2000/01/rdf-schema#label">
-> 		<rdfs:domain rdf:resource="E1_CRM_Entity"/>
-> 		<rdfs:range rdf:resource="http://www.w3.org/2000/01/rdf-schema#Literal"/>
-> 	</rdf:Property>
-> ```
->
-> and added to the schema. The result is that each rdfs:label would be a property of crm:E1_CRM_Entity, and subsequently to each of the subclasses of E1. The rationale behind is that crm:E1_CRM_Entity has as a property crm:P1_is_identified_by, which is completely equivalent to rdfs:label. 
-> The consequence is the possibility to use rdfs:label instead of crm:P1_is_identified_by for each of the class in CRM
-
+**crm:E21 Person → P1 is identified by → E41 Appellation → rdfs:Label → rdfs:Literal**
 
 ```xml-dtd
-a crm:E21_Person ;
-rdfs:label "Giovanni da Udine" .
+<http://vocab.getty.edu/ulan/500020981> 
+a  crm:E21_Person ;
+crm:P1_is_identified_by <https://collection.itatti.harvard.edu/resource/appellation/6c5a29fd81f9> .
+<https://collection.itatti.harvard.edu/resource/appellation/6c5a29fd81f9>
+a  crm:E41_Appellation ;
+rdfs:label "Gian Francesco de Maineri" .
 ```
 
-> <mark>The form chosen by **SARI**</mark> is the number 1. But on top of property crm:P3_has_note also rdf:value is used.
+*<small>Codebox 1  - Appellation</small>*
+
+**Modelling Note**
+
+> *The use of crm:P3_has_note for encoding the value of the appellation is discouraged because of its confusing nature. Appellations can have both notes and values, which are part of two different information domains, and should not overlap. Addittionaly, the property rdf:value, which can be also used to encode the appellation, is to be set aside because of its lack of explicit semantics.*
+
+### Preferred Appellation
+
+The preference for a specific sign or string for identifying an entity can be modelled using SKOS. In respect to the encoding of the [appellation](#appellation), the initial part of the modelling remain the same:
+
+**E21 Person → P1 is identified by → E41 Appellation**
+
+What change is the property used for encoding the Literal, which is not rdfs:Label as before but skos:prefLabel. PrefLabel identify a preferred lexical label of a resource:
+
+**crm:E21 Person → P1 is identified by → E41 Appellation → skos:prefLabel → rdfs:Literal**
 
 ```xml-dtd
-crm:E21_Person crm:P1_is_identified_by crm:E82_Actor_Appellation.
-crm:E82_Actor_Appellation crm:P3_has_note "Semper, Gottfried".
-crm:E82_Actor_Appellation rdf:value "Semper, Gottfried".
+<http://vocab.getty.edu/ulan/500020981> 
+a  crm:E21_Person ;
+crm:P1_is_identified_by <https://collection.itatti.harvard.edu/resource/appellation/6c5a29fd8> .
+<https://collection.itatti.harvard.edu/resource/appellation/6c5a29fd8>
+a  crm:E41_Appellation ;
+skos:prefLabel "Maineri, Gian Francesco de" .
 ```
+
+*<small>Codebox 2  - Preferred Appellation</small>*
+
+**Modelling Note**
+
+> *CRM does provide a property for encoding a preffered identifier, P48 has preferred identifier, but the range is E42 Identifier, a subclass of E41 Appellation, therefore it cannot be used for encoding the preferred appellation.*
 
 ## Identifier
 
-A object can has multiple identifiers which we want to link to. An easy example would be Michelangelo, which has an internal identifier, a page on wikidata with his own identifier, as well as another one on ULAN. We can chose to define them and chose a preferred one. 
+#### Note
 
-Possible modelling in CRM are:
+An identifier is a string assigned to an entity that uniquely identify it in a system (usually, a digital system). Examples of identifiers comprises inventory numbers, databases keys or other strings used for retrieval and identification purpose. As for the appellation, an entity can has multiple identifiers from the same or different system, and a preferred one can be chosen.
 
-1. **E21 Person → P48 has preferred identifier → rdfs:Literal** (_see the code block number 1_)
-2. **E21 Person → P1 is identified by → rdfs:Literal** (_see the code block number 2_)
-3. **E21 Person → P1 is identified by → E42 Identifier → P3 has note | rdf:value → rdfs:Literal** (_see the code block number 3_)
+### Identifier
 
+A simple identifier can be modelled in CRM as
 
-```xml-dtd
-crm:P1_is_identified_by "B00000737" ;
-```
+**E21 Person → P1 is identified by → E42 Identifier**
 
+The encoding of the string of characters of the identifier can be done in multiple ways. The form chosen by the consortium is:
 
-```xml-dtd
-crm:P48_has_preferred_identifier "A00000737" ;
-```
-
-> <mark>Both form are employed by **ITatti**</mark>
-
-
-> <mark>The form chosen by **SARI**</mark> is the number 3.
+**E21 Person → P1 is identified by → E42 Identifier → rdfs:Label → rdfs:Literal**
 
 ```xml-dtd
-crm:E21_Person crm:P1_is_identified_by crm:E42_Identifier.
-crm:E42_Identifier crm:P3_has_note "d701b57c-41a8-4ded-b411-08bcfdf01682".
-crm:E42_Identifier rdf:value "d701b57c-41a8-4ded-b411-08bcfdf01682".
+<http://vocab.getty.edu/ulan/500020981> 
+a  crm:E21_Person ;
+crm:P1_is_identified_by <https://collection.itatti.harvard.edu/resource/identifier/6c5a29fd8> .
+<https://collection.itatti.harvard.edu/resource/identifier/6c5a29fd8>
+a  crm:E42_Identifier ;
+rdfs:label "6c5a29fd8" .
 ```
 
-## Time
+*<small>Codebox 3  - Identifier</small>*
 
-Time is treated quite profoundly in CRM and diverse can be the time representations as well as time expression that the model offer. A possible summarisation of these approaches is outside the scope of the document but the one interested could consult the resource **list resources**
+### Preferred identifier
 
-Such a diverse approach allow for a great diversity in the mapping:
+The preference for a specific identifier can be modelled using CIDOC-CRM as
 
-1. **E12 Production→ P4 has time-span → E52 Time-Span → P79 beginning is qualified by → xsd:gYear / E12 Production→ P4 has time-span → E52 Time-Span → P80 end is qualified by → xsd:gYear**
-2. **E12 Production→ P4 has time-span → E52 Time-Span → P79 beginning is qualified by → xsd:dateTime / E12 Production→ P4 has time-span → E52 Time-Span → P80 end is qualified by → xsd:dateTime**
+**E21 Person → P48 has preferred identifier → E42 Identifier**
+
+The encoding of the string of characters of the identifier can be done in multiple ways. The form chosen by the consortium is:
+
+**E21 Person → P1 is identified by → E42 Identifier → rdfs:Label → rdfs:Literal**
 
 ```xml-dtd
- a crm:E52_Time-Span ;
-crm:P79_beginning_is_qualified_by "1401"^^xsd:gYear ;
-crm:P80_end_is_qualified_by  "1700"^^xsd:gYear .
+<http://vocab.getty.edu/ulan/500020981> 
+a  crm:E21_Person ;
+crm:P48_has_preferred_identifier <https://collection.itatti.harvard.edu/resource/identifier/6c5a88> .
+<https://collection.itatti.harvard.edu/resource/identifier/6c5a88>
+a  crm:E42_Identifier ;
+rdfs:label "6c5a88" .
 ```
 
-> <mark>The form chosen by **SARI**</mark> is the number 2, because the majority of our dates include day, month and year. 
->
-```xml-dtd
-crm:E12_Production crm:P4_has_time-span crm:E52_Time-Span. 
-crm:E52_Time-Span crm:P79_beginning_is_qualified_by "2001-10-21T21:32:52"^^xsd:dateTime.
-crm:E52_Time-Span crm:P80_end_is_qualified_by  "2001-10-26T00:00:00"^^xsd:dateTime.
-```
+*<small>Codebox 4 - Preferred Identifier</small>*
 
+## Time-span
 
-## Place
+#### Note
 
-Place is another important feature we should harmonise. Diverse are the possibilities, both inside and outside CRM. The latter offers an extension called CRMGeo that harmonise CRM with GeoSparql and offer a nice representation of the geographical features with a rich semantics. However the adoption is limited and the learning curve is steep. Other option are offered in CRM, which allow the expression of simple statements about place. 
+CIDOC-CRM assume the existence of a SpaceTime dimension, where each temporal entity can be mapped to. This system allow the computing of diversity, closeness or equality in time between events. In doing so, it treats temporal extents in their physical sense, characterising each time interval with a beginning, an end and a duration. Additionally, CIDOC-CRM assume that our knowledge of the time intervals of an historical event has diverse degree of certainty, and it allow us to record such certainty/uncertainty with specific properties. A useful summarisation of the treatment of time in CIDOC-CRM is available in the document [Time](time.html).  
 
-The identified mapping options are:
+Following CIDOC-CRM we will model time-related assertions as certain or uncertain, where the certain statements are going to be model using the property P81, while the uncertain statements using the property P82. The level of certainty have to be determined by the researcher carrying out the work. 
 
-1. **E53 Place → P87 is identified by →  E47 Spatial Coordinates →  rdfs:Label →  rdfs:Literal**
-2. **wgs:SpatialThing→ wgs:lat →  rdfs:Literal / wgs:SpatialThing→ wgs:long →  rdfs:Literal**
-3. **E53 Place→ P87 is identified by → wgs:Point→ wgs:lat →  rdfs:Literal**
+We can have two diverse modelling scenario:
 
-We will see them in more details
+1. Fuzzy time statements
+2. Precise time statements
 
-1. **E53 Place → P87 is identified by →  E47 Spatial Coordinates →  rdfs:Label →  rdfs:Literal**
+In both cases the date is formatted following the [ISO 8601:2004](https://www.iso.org/standard/40874.html) reccomandations that prescribe the composition of the date using the format:
 
-   This mapping actually require the specification of the Type of the Spatial Coordinates we are  annotating a place with, such as "Latitude" or "Longitude". Other options could be "WGS84" or other reference system.
+> YYYY-MM-DD
 
-| Entity    | Relationship         | Entity                  | Relationship | Entity       |
-| --------- | -------------------- | ----------------------- | ------------ | ------------ |
-| E53 Place | P87 is identified by | E47 Spatial Coordinates | rdfs:Label   | rdfs:Literal |
-|           |                      | ⮑                       | P2 has type  | rdfs:Literal |
+### Fuzzy Time Statements
 
+Fuzzy time statements are modelled using CIDOC-CRM as:
 
-```xml-dtd
- a crm:E53_Place ;
-crm:P87_is_identified_by  ,  .
-
-
-a crm:E47_Spatial_Coordinates;
-rdfs:label "11.8818051" ;
-crm:P2_has_type “Longitude" .
-
-
-a crm:E47_Spatial_Coordinates;
-rdfs:label "60.1701801" ;
-crm:P2_has_type “Latitude" .
-```
-The solution is complex and require the use of type for something which should be properly expressed. Moreover, another type would be use if the reference system should be specified.
+- **E52 Time-Span → P82a begin of the begin → xsd:dateTime**
+- **E52 Time-Span → P82b end of the end → xsd:dateTime**
 
 
 
-2. **wgs:SpatialThing→ wgs:lat →  rdfs:Literal / wgs:SpatialThing→ wgs:long →  rdfs:Literal**
-
-   ​
-
-   Another solution is to map a wgs:SpatialThing, which is an entity of the Ontology Geo as a subclass of E53 Place and express the latitude and longitude relative to the place. It is a straightforward solution which, however, does confuse, as it happens in many case, what it is a place and what are the coordinate of that place. The two are very different and should not be mix together.
+The date need to be expressed with its datatype (gYearMonth, gMonthDay, gDay, gMonth and gYear). See the [W3C reccomandations](https://www.w3.org/TR/xmlschema-2/#isoformats) for more details.
 
 ```xml-dtd
-   a wgs:SpatialThing;
-   wgs:lat “60.1701801" ;
-   wgs:long “24.9419037” .
+<https://collection.itatti.harvard.edu/resource/work/W00060289/production/timespan>
+a  crm:E52_Time-Span ;
+crm:P82a_begin_of_the_begin  "1401-01-01"^^xsd:date ;
+crm:P82b_end_of_the_end      "1700-12-31"^^xsd:date .
 ```
 
+*<small>Codebox 5 - Fuzzy Time Statements</small>*
 
-3. **E53 Place→ P87 is identified by → wgs:Point→ wgs:lat →  rdfs:Literal**
+**Modelling Note**
 
-This mapping takes in account the declaration, at an ontology level, that wgs:Point, an entity in the ontology Geo, is a subclass of E47 Spatial Coordinates. 
+> *The production event recorded here has a time interval of almost 3 centuries. The choice of using a fuzzy time statement is, in this case, quite clear. *
+
+### Precise time statements
+
+Precise time statements are modelled using CIDOC-CRM as:
+
+- **E52 Time-Span → P81a end of the begin → xsd:dateTime **
+- **E52 Time-Span → P81b begin of the end → xsd:dateTime**
+
+```xml-dtd
+<https://collection.itatti.harvard.edu/resource/work/W00060289/production/timespan>
+a  crm:E52_Time-Span ;
+crm:P81a_begin_of_the_begin  "2001-10-21T21:32:52"^^xsd:dateTime;
+crm:P81b_end_of_the_end      "2001-10-26T00:00:00"^^xsd:dateTime.
+```
+
+*<small>Codebox 6 - Precise Time Statements</small>*
+
+**Modelling Note**
+
+> *The precision of the date is a clear sign we are dealing with a more precise time statement.*
+
+
+
+## Spatial Coordinate
+
+#### Note
+
+A place is a section of space identified indipendently from its temporal status. They are usually referenced using absolute (WGS, EPSG) or relative reference systems. Absolute reference system use point-based coordinates to identify representation of space.
+
+
+
+### Longitude & Latitude
+
+The spatial coordinates of a place can be modelled as 
+
+**E53 Place → P87 is identified by →  E47 Spatial Coordinates**
+
+The encoding of the latitude and longitude can be done in multiple ways. The form chosen by the consortium is to rely on a basic RDF vocabulary for representing latitude and longitude using WGS84 as a reference system. In order to do so, we will have to map the class crm:E47_Spatial_Coordinates with the corresponding class in [geo](https://www.w3.org/2003/01/geo/).
+
+We can declare geo:Point as sub class of crm:E47_Spatial_Coordinates with the following
+
+```xml-dtd
+<rdfs:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#Point">
+	<rdfs:subClassOf rdf:resource="E47_Spatial_Coordinates"/>
+</rdfs:Class>
+```
+*<small>Codebox 7</small>*
+
+Having mapped crm:E47_Spatial_Coordinates to geo:Point we can use two new properties
+
+ * geo:lat
+ * geo:long
+
+To describe, respectively, the latitude and longitude of a E53 Place.
 
 ```xml-dtd
 https://collection.itatti.harvard.edu/resource/ex/place/ a crm:E53_Place ;
@@ -193,25 +221,19 @@ wgs:lat "60.1701801" ;
 wgs:long “24.9419037" .
 ```
 
-> This solution number 3 is <mark>the one chosen by **I Tatti**</mark>, because it clarify the properties and it is properly mapped to CRM. Moreover Geo is, by far, the most used geographical ontology in the Linked Data  cloud [^1].
->
-
-## OWL sameAs
-
-A specific paragraph should be dedicated to owl:sameas which is probably one of the most used element in owl, and a way to connected entities between diverse graph.
-
-```xml-dtd
-https://collection.itatti.harvard.edu/resource/person/example
-owl:sameas "http://vocab.getty.edu/ulan/500004700" .
-```
-
-Its popularity has made it particularly misused, and it is better to remind everyone (author included) that for linking entities which are not exactly the same[^2] other properties are available, such as skos:exactMatch which should be considered always as possible alternative.
+*<small>Codebox 8 - Latitude and Longitude of a Place</small>*
 
 
+
+<!--
+
+ [**To be revised**]
 
 ## Dimension/Quantity
 
-Dimension are quantifiable property which derived by an act of observation. The result of an observation is always a couple value/system which can be modelled in CRM as:
+#### Note
+
+In CIDOC-CRM Dimension are quantifiable data which result from an observation. The outcome of an observation is always to be seen as a couple value/system which can be modelled in CRM as:
 
 **E54 Dimension → P91 has unit →  E58 Measurement Unit →  rdfs:Label →  rdfs:Literal**
 
@@ -257,113 +279,8 @@ And then state:
 
 **qudt:Quantity → qudt:hasQuantityKind → qudt:QuantityKind → qudt:description →  "Height"**
 
+—>
 
 
-# Bibliographic Data
 
-We model bibliographic data using [FRBRoo](http://www.cidoc-crm.org/frbroo/), the CIDOC-CRM extension for bibliographic data. We demonstrate the modelling of a printed book, but the approach can be adapted to similar items of expressive matters, such as letters, manuscripts, recordings, etc.
-
-Note: the information here is based on FRBRoo 2.4, which is the latest release at the time of writing. FRBRoo 3.0 is currently under development.
-
-## References
-
-The examples are based on the data of the [Sphaera](http://sphaera.mpiwg-beriln.mpg.de) project. The data model for this was developed following the guidelines in:
-
- Doerr, M., Gradmann, S., LeBoeuf, P., Aalberg, T., Bailly, R., & Olensky, M. (2013). _Final Report on EDM - FRBRoo Application Profile Task Force_. Europeana. Retrieved from <http://pro.europeana.eu/taskforce/edm-frbroo-application-profile>
-
-A tutorial on FRBRoo is available [here](http://83.212.168.219/FRBR_Tutorial/)
-
-## Book
-
-In FRBRoo, a book is understood as consisting of several (CRM) entities:
-
-- the physical book (F5 Item): an individual material copy of a book
-- the manifestation (F3 Manifestation Product Type): the 'prototype' of a particular book, identifiable for example by an ISBN number
-- the expression (F22 Self-Contained Expression): the text contained in a book
-- the work (F1 Work): the work conveyed by a book
-
-Using this terminology we can talk of my personal copy of Virginia Woolf's _Orlando_ (F5 Item), which is the Oxford World's Classics edition (F3 Manifestation Product Type), that contains the text edited by Michael H. Whitworth (F22 Self-Contained Expression) and conveys Vriginia Woolf's work _Orlando_ (F1 Work).
-
-Note: In FRBRoo 2.4 we distinguish between the _F24 Publication Expression_ that includes the entire content of a book (including page numbers, TOC, etc.) and the _F22 Self-Contained Expression_ that includes the text as written by the author. This discrimination is likely to be abandoned in version 3.0.
-
-The components are modelled as follows:
-
-1. **F5 Item → P128 carries → F24 Publication Expression**
-2. **F24 Publication Expression → P165 incorporates → F22 Self-Contained Expression**
-3. **F5 Item → R7 is example of → F3 Manifestation Product Type**
-4. **F1 Work → R3 is realised in → F22 Self-Contained Expression**
-
-```ttl
-@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
-
-<http://example.org/book> a frbroo:F5_Item ;
-	crm:P128_carries <http://example.org/book/publication> ;
-	crm:R7_is_example_of <http://example.org/book/manifestation> .
-
-<http://example.org/book/publication> a frbroo:F24_Publication_Expression ;
-	crm:P165_incorporates <http://example.org/book/expression> . 
-
-<http://example.org/book/expression> a frbroo:F22_Self-Contained_Expression .
-
-<http://example.org/book/work> a frbroo:F1_Work ;
-	frbroo:R3_is_realised_in <http://example.org/book/expression> .
-```
-
-### Author
-
-As author we understand the actor(s) responsible for the creation of a F22 Self-Contained Expression. Therefore, the term does not convey a particular idea of authorship and can include different roles, such as translators, copyists, etc.
-
-We model the creation of the Expression as follows:
-
-1. **F22 Self-Contained Expression → R17i was created by → F28 Expression Creation**[^3]
-
-The author is then represented as the actor carrying out the event
-
-1. **F28 Expression Creation → P14 carried out by → E39 Actor**
-
-
-```ttl
-@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
-
-<http://example.org/book/expression> a frbroo:F22_Self-Contained_Expression ;
-	frbroo:R17i_was_created_by <http://example.org/book/expression/event> .
-	
-<http://example.org/book/expression/event> a frbroo:F28_Expression_Creation ;
-	crm:P14_carried_out_by <http://example.org/actor> .
-	
-<http://example.org/actor> a crm:E39_Actor .
-```
-
-The typed property PC14 carried out by is used when we need to represent additional information:
-
-1. **F28 Expression Creation → P01 is domain of → PC14 carried out by → P02 has range → E39 Actor**
-2. **PC14 carried out by → P14.1 in the role of → E55 Type**
-
-
-```ttl
-@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
-@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
-
-<http://example.org/book/expression> a frbroo:F22_Self-Contained_Expression ;
-	frbroo:R17i_was_created_by <http://example.org/book/expression/event> .
-	
-<http://example.org/book/expression/event> a frbroo:F28_Expression_Creation ;
-	crm:P01_is_domain_of <http://example.org/book/author/1> .
-	
-<http://example.org/book/author/1> a crm:PC14_carried_out_by ;
-	crm:P02_has_range <http://example.org/actor> ;
-	crm:P14.1_in_the_role_of <http://example.org/type/author>
-	
-<http://example.org/actor> a crm:E39_Actor .
-
-<http://example.org/type/author> a crm:E55_Type .
-```
-
-
-[^1]: Not recognised officialy by W3C, Geo becomes a *standard de facto* for geographical data. However it is not as complex or precise as GEOSparql or CRMGeo
-
-[^2]: See the case of historical place vs actual places.
-
-[^3]: We occasionally prefer to note the inverse CIDOC properties, denoted by _i_, when there is an identifiable 'central' entity. 
+[^]: 
