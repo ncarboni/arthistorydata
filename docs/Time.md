@@ -65,9 +65,9 @@ The collection of P82a/b statements about the event (as well as about precedent 
 
 For defining the inner boundaries of our time intervals, and therefore the precise statements about an event, we will use P81.
 
-crm:P81a_end_of_the_begin identify the end of the outer boundaries and the beginning of the internal one (C)
+`crm:P81a_end_of_the_begin` identify the end of the outer boundaries and the beginning of the internal one (C)
 
-crm:P81b_begin_of_the_end identify the end of the internal boundary and the begin of the external one (C)
+`crm:P81b_begin_of_the_end` identify the end of the internal boundary and the begin of the external one (C)
 
 
 
