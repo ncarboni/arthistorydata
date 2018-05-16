@@ -39,7 +39,6 @@ a  crm:E41_Appellation ;
 rdfs:label "Gian Francesco de Maineri" .
 ```
 
-*<small>Codebox 1  - Appellation</small>*
 
 **Modelling Note**
 
