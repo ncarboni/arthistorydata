@@ -1,61 +1,73 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art History Data</title>
 
-        <title>Art History Data</title>
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic|Roboto+Slab:400,700|Inconsolata:400,700&subset=latin,cyrillic'
+          rel='stylesheet' type='text/css'>
 
-        <link rel="stylesheet" href="https://ncarboni.github.io/arthistorydata/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://ncarboni.github.io/arthistorydata/css/font-awesome.min.css">
-        <link rel="stylesheet" href="https://ncarboni.github.io/arthistorydata/css/highlight.dark.css">
-        <link rel="stylesheet" href="https://ncarboni.github.io/arthistorydata/css/main.css">
-    </head>
-    <body>
+    <link rel="stylesheet" href="https://github.com/CouscousPHP/Template-ReadTheDocs/css/theme.css" type="text/css"/>
+    <link rel="stylesheet" href="https://github.com/CouscousPHP/Template-ReadTheDocs/css/theme-fixes.css" type="text/css"/>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/github.min.css">
+</head>
+<body class="wy-body-for-nav">
 
-        <header class="navbar navbar-default navbar-fixed-top">
+    <div class="wy-grid-for-nav">
 
-            <a class="navbar-brand" href="https://ncarboni.github.io/arthistorydata/">
-                Art History Data
-                <small class="hidden-xs hidden-sm">
-                    CIDOC-CRM harmonisation group
-                </small>
-            </a>
+        <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+            <div class="wy-side-nav-search">
+                <a href="https://github.com/CouscousPHP/Template-ReadTheDocs/" class="fa fa-home"> Art History Data</a>
+            </div>
 
-                            <a href="https://github.com/ncarboni/arthistorydata">
-                    <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png">
-                </a>
-            
-        </header>
+            <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                                            <li class="toctree-l1 ">
+                            <a class="reference internal "
+                               href="https://github.com/CouscousPHP/Template-ReadTheDocs/index.html">
+                                Home
+                            </a>
+                        </li>
+                                            <li class="toctree-l1 ">
+                            <a class="reference internal "
+                               href="https://github.com/CouscousPHP/Template-ReadTheDocs/time.html">
+                                CRM & Time
+                            </a>
+                        </li>
+                                            <li class="toctree-l1 ">
+                            <a class="reference internal "
+                               href="https://github.com/CouscousPHP/Template-ReadTheDocs/bibliographic_data.html">
+                                Bibliographic Data
+                            </a>
+                        </li>
+                                            <li class="toctree-l1 ">
+                            <a class="reference internal "
+                               href="https://github.com/CouscousPHP/Template-ReadTheDocs/dimension.html">
+                                Dimension
+                            </a>
+                        </li>
+                                    </ul>
+            </div>
+            &nbsp;
+        </nav>
 
-        <main class="container-fluid">
-            <div class="row">
+        <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
 
-                
-                    <nav id="sidebar" class="col-sm-3 col-lg-2" role="navigation">
+                        <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+                <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+                <a href="https://github.com/CouscousPHP/Template-ReadTheDocs/">Art History Data</a>
+            </nav>
 
-                        <ul class="nav nav-pills nav-stacked">
-                                                            <li class="">
-                                    <a href="https://ncarboni.github.io/arthistorydata/index.html">
-                                        Home
-                                    </a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://ncarboni.github.io/arthistorydata/time.html">
-                                        Time
-                                    </a>
-                                </li>
-                                                    </ul>
 
-                    </nav>
-
-                
-                <section id="content" class="col-sm-offset-3 col-lg-offset-2 col-sm-9 col-lg-10">
-                    <h1 id="cidoc-crm-amp-time">CIDOC-CRM &amp; Time</h1>
+                        <div class="wy-nav-content">
+                <div class="rst-content">
+                    <div role="main" class="document">
+                        <h1 id="cidoc-crm-amp-time">CIDOC-CRM &amp; Time</h1>
 <p>Ontologically speaking, the Time dimension is quite a complicated affair. Time, in fact, has different expressions, different calendars, and different degrees of certainty, making it very difficult to precisly calculate it, specifically in relation to diverse datasets. </p>
 <p>The problem was originally solved, at least for calculus, by Allen in 1983. In order to overcome the calculation problem, Allen defined seven relationships useful for reasoning about time intervals (X, Y):</p>
+<p>​   * X before Y (P120)</p>
 <ol>
-<li>X before Y (P120)</li>
 <li>X meets Y (P119)</li>
 <li>X overlaps Y (P118)</li>
 <li>X during Y (P117)</li>
@@ -93,30 +105,36 @@
 <p>For defining the inner boundaries of our time intervals, and therefore the precise statements about an event, we will use P81.</p>
 <p>crm:P81a_end_of_the_begin identify the end of the outer boundaries and the beginning of the internal one (C)</p>
 <p>crm:P81b_begin_of_the_end identify the end of the internal boundary and the begin of the external one (C)</p>
-                </section>
+                    </div>
 
+                    <footer>
+                        <hr/>
+                                                    <div role="contentinfo">
+                                <p>
+                                    Find Art History Data on <a href="https://github.com/ncarboni/arthistorydata">GitHub</a>.
+                                </p>
+                            </div>
+                                                Built with <a href="http://couscous.io/">Couscous</a> using a <a href="https://github.com/CouscousPHP/Template-ReadTheDocs">theme</a> based on <a href="https://readthedocs.org/">Read the Docs</a>.
+                    </footer>
+
+                </div>
             </div>
-        </main>
 
-        <footer>
-            <div class="container-fluid">
-                <p class="text-muted">
-                    website generated with <a href="http://couscous.io" title="Markdown website generator">Couscous</a>
-                </p>
-            </div>
-        </footer>
+        </section>
 
-        <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-        <script src="//yastatic.net/highlightjs/8.2/highlight.min.js"></script>
+    </div>
 
-        <script>
-            $(function() {
-                $("section>h1").wrap('<div class="page-header" />');
-                // Syntax highlighting
-                hljs.initHighlightingOnLoad();
-            });
-        </script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"></script>
+    <script src="https://github.com/CouscousPHP/Template-ReadTheDocs/js/theme.js"></script>
 
-    </body>
+    <script>
+        $(function() {
+            // Syntax highlighting
+            hljs.initHighlightingOnLoad();
+        });
+    </script>
+
+</body>
 </html>
