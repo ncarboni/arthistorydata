@@ -34,7 +34,7 @@ branch: gh-pages
 
 # Base URL of the published website (no "/" at the end!)
 # You are advised to set and use this variable to write your links in the HTML layouts
-baseUrl: https://github.com/CouscousPHP/Template-ReadTheDocs
+baseUrl: https://ncarboni.github.io/arthistorydata/
 
 
 
@@ -56,12 +56,12 @@ menu:
         time:
             text: CRM & Time
             # You can use relative urls
-            relativeUrl: time.html
+            relativeUrl: docs/time.html
         book:
             text: Bibliographic Data
             # You can use relative urls
-            relativeUrl: bibliographic_data.html
+            relativeUrl: docs/bibliographic_data.html
         dimension:
             text: Dimension
             # You can use relative urls
-            relativeUrl: dimension.html
+            relativeUrl: docs/dimension.html
