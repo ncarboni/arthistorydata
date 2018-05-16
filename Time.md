@@ -8,13 +8,11 @@ The problem was originally solved, at least for calculus, by Allen in 1983. In o
 
 1. X before Y (P120)
 2. X meets Y (P119)
-3. X overlaps Y (P118)
-4. X during Y (P117)
-5. X starts Y (P116)
-6. X finishes Y (P115)
-7. X equals Y (P114)   
-
-<br>
+2. X overlaps Y (P118)
+3. X during Y (P117)
+4. X starts Y (P116)
+5. X finishes Y (P115)
+6. X equals Y (P114)   
 
 
 CIDOC-CRM was heavily influenced by this approach, and the properties associated with the Temporal entity in CRM refer exactly to these relationships.  
@@ -27,8 +25,6 @@ CIDOC-CRM was heavily influenced by this approach, and the properties associated
 5. P116 starts (is started by)
 6. P115 finishes (is finished by)
 7. P114 is equal in time to   
-
-<br>
 
 
 Each temporal entity has to be seen as part of a time dimension where we can calculate diversity, closeness or equality in time between described event using these expression. However, for such objective to be achieved, it is paramount to express time intervals not only using topological relationships between temporal entities but fixed time point. This solution open up the problem of a common standard. Time expressions can, in fact, differ. The cause of this diversity is geographical, cultural, normative or just based on personal preferences. Different date values would be: 
@@ -57,17 +53,17 @@ The level of precision and imprecision is determined by the researcher carrying 
 
 Coming back to the modelling practice, as mentioned above, the the more "imprecise" statements are going to be model using the property P82.
 
-`crm:P82a _begin_of_the_begin` identifty the beginning of the outer set of fuzzy time intervals (A)
+crm:P82a _begin_of_the_begin identifty the beginning of the outer set of fuzzy time intervals (A)
 
-`crm:P82b_end_of_the_end` identify the end of the fuzzy time intervals (B)
+crm:P82b_end_of_the_end identify the end of the fuzzy time intervals (B)
 
 The collection of P82a/b statements about the event (as well as about precedent and following events) coming from multiple institution would allow us to detect more precisly the time interval about our historical event.
 
 For defining the inner boundaries of our time intervals, and therefore the precise statements about an event, we will use P81.
 
-crm:P81a_end_of_the_begin identify the end of the outer boundaries and the beginning of the internal one (C)
+`crm:P81a_end_of_the_begin` identify the end of the outer boundaries and the beginning of the internal one (C)
 
-crm:P81b_begin_of_the_end identify the end of the internal boundary and the begin of the external one (C)
+`crm:P81b_begin_of_the_end` identify the end of the internal boundary and the begin of the external one (C)
 
 
 
