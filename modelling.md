@@ -2,7 +2,7 @@
 
 *CRM modelling & examples*
 
-The document outlines modelling choices in relation to diverse entities described in the Consortium's data. The modelling is provided, whenever possible, using CIDOC-CRM. However, in certain cases other ontologies are used. For each of the described entities diverse encoding choices were outlined, and decision about them were made. Scope of this document is not to provide a track of this process, but just to present its results. However, even if not present here, the documentation of the possible modelling and encoding of an entity in RDF can be found in the [Annex A](Annex.md).
+The document outlines modelling choices in relation to diverse entities described in the Consortium's data. The modelling is provided, whenever possible, using CIDOC-CRM. However, in certain cases other ontologies are used. For each of the described entities diverse encoding choices were outlined, and decision about them were made. Scope of this document is not to provide a track of this process, but just to present its results. However, even if not present here, the documentation of the possible modelling and encoding of an entity in RDF can be found in the [Annex A](#).
 
 For each entity, as an example of its use, an RDF encoding of a real-world statements is provided. The syntax of the encoding is Turtle, and all the prefix used can be found on http://prefix.cc/ .
 
@@ -191,7 +191,7 @@ A place is a section of space identified indipendently from its temporal status.
 
 ### Longitude & Latitude
 
-The spatial coordinates of a place can be modelled as 
+The spatial coordinates of a place can be modelled in CIDOC-CRM as 
 
 **E53 Place → P87 is identified by →  E47 Spatial Coordinates**
 
@@ -233,11 +233,17 @@ wgs:long “24.9419037" .
 
 #### Note
 
-In CIDOC-CRM Dimension are quantifiable data which result from an observation. The outcome of an observation is always to be seen as a couple value/system which can be modelled in CRM as:
+Dimension are measurable data which results from an observation. The outcome of an observation is always to be seen as a couple value/system where the meaning of the value is dependant on the system used.
 
-**E54 Dimension → P91 has unit →  E58 Measurement Unit →  rdfs:Label →  rdfs:Literal**
+Dimensions can be modelled in CRM as:
 
-**E54 Dimension → P90 has value →  E60 Number →  rdf:value →  rdfs:Literal**
+**E54 Dimension → P91 has unit →  E58 Measurement Unit**
+
+**E54 Dimension → P90 has value →  E60 Number**
+
+
+
+
 
 ```xml-dtd
 https://collection.itatti.harvard.edu/resource/dimension/example a crm:E54_Dimension ;
