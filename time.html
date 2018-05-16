@@ -75,7 +75,6 @@
 <li>X finishes Y (P115)</li>
 <li>X equals Y (P114)   </li>
 </ol>
-<p><br></p>
 <p>CIDOC-CRM was heavily influenced by this approach, and the properties associated with the Temporal entity in CRM refer exactly to these relationships.  </p>
 <ol>
 <li>P120 occurs before (occurs after)</li>
@@ -86,7 +85,6 @@
 <li>P115 finishes (is finished by)</li>
 <li>P114 is equal in time to   </li>
 </ol>
-<p><br></p>
 <p>Each temporal entity has to be seen as part of a time dimension where we can calculate diversity, closeness or equality in time between described event using these expression. However, for such objective to be achieved, it is paramount to express time intervals not only using topological relationships between temporal entities but fixed time point. This solution open up the problem of a common standard. Time expressions can, in fact, differ. The cause of this diversity is geographical, cultural, normative or just based on personal preferences. Different date values would be: </p>
 <blockquote>
 <p>1 September 1890, 01/09/1890, 1-09-1890, 09/01/1890, 1st Sept 1980</p>
@@ -101,8 +99,8 @@
 <p>The image above help us clarify this concept. Let's assume that the event <em>x</em> {A,B} is an historical event. Our knowledge of the time interval where the event took place has some level diverse degree of certainty. We will, therefore, model these statements as certain and uncertain, where the certain statements are going to be model using the property P81, while the uncertain statements using the property P82. What we will have at the end is a larger set of time intervals (A-C + D-B in the picture) and an internal set of time intervals (C-D), correspondig respectively to imprecise and precise statements.</p>
 <p>The level of precision and imprecision is determined by the researcher carrying out the work. However, there are more clues to determine what should be considered imprecise. An event which is carried out during the course of a year is usually reported as been made in YYYY (e.g. 1894). However, such notation implies imprecision, because it literally signify a timespan ranging from 1894-01-01 till 1894-12-31. This type of notation is usually used for the creation date of a work of art, but in the majority of cases this is just an approximation, and should be recorded using the imprecise time intervals. It would be quite rare, in fact, that an artist started working the first of January and finished it off for the thirty one of December of the same year. A more precise time statement would become apparent as a result of the collection of a large pool of statements about the artist, its artwork and its activities.</p>
 <p>Coming back to the modelling practice, as mentioned above, the the more &quot;imprecise&quot; statements are going to be model using the property P82.</p>
-<p><code>crm:P82a _begin_of_the_begin</code> identifty the beginning of the outer set of fuzzy time intervals (A)</p>
-<p><code>crm:P82b_end_of_the_end</code> identify the end of the fuzzy time intervals (B)</p>
+<p>crm:P82a _begin_of_the_begin identifty the beginning of the outer set of fuzzy time intervals (A)</p>
+<p>crm:P82b_end_of_the_end identify the end of the fuzzy time intervals (B)</p>
 <p>The collection of P82a/b statements about the event (as well as about precedent and following events) coming from multiple institution would allow us to detect more precisly the time interval about our historical event.</p>
 <p>For defining the inner boundaries of our time intervals, and therefore the precise statements about an event, we will use P81.</p>
 <p><code>crm:P81a_end_of_the_begin</code> identify the end of the outer boundaries and the beginning of the internal one (C)</p>
