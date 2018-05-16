@@ -2,7 +2,7 @@ template:
     # Name of the directory containing the website template (default is "website")
     #directory: website
     # Or if you are using a remote template, you can set the Git URL
-    url: https://github.com/CouscousPHP/Template-Light
+    url: https://github.com/CouscousPHP/Template-ReadTheDocs
     # Name of the index file (default is "README.md")
     index: modelling.md
 
@@ -54,14 +54,14 @@ menu:
             # You can use relative urls
             relativeUrl: index.html
         time:
-            text: CRM-Time
+            text: CRM & Time
             # You can use relative urls
             relativeUrl: time.html
         book:
-            text: FRBRoo
+            text: Bibliographic Data
             # You can use relative urls
             relativeUrl: bibliographic_data.html
         dimension:
-            text: FRBRoo
+            text: Dimension
             # You can use relative urls
             relativeUrl: dimension.html
