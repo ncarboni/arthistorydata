@@ -12,7 +12,7 @@ The problem was originally solved, at least for calculus, by Allen in 1983. In o
 3. X during Y (P117)
 4. X starts Y (P116)
 5. X finishes Y (P115)
-6. X equals Y (P114)
+6. X equals Y (P114)   
 
 
 CIDOC-CRM was heavily influenced by this approach, and the properties associated with the Temporal entity in CRM refer exactly to these relationships.  
@@ -24,7 +24,7 @@ CIDOC-CRM was heavily influenced by this approach, and the properties associated
 4. P117 occurs during (includes)
 5. P116 starts (is started by)
 6. P115 finishes (is finished by)
-7. P114 is equal in time to
+7. P114 is equal in time to   
 
 
 Each temporal entity has to be seen as part of a time dimension where we can calculate diversity, closeness or equality in time between described event using these expression. However, for such objective to be achieved, it is paramount to express time intervals not only using topological relationships between temporal entities but fixed time point. This solution open up the problem of a common standard. Time expressions can, in fact, differ. The cause of this diversity is geographical, cultural, normative or just based on personal preferences. Different date values would be: 
