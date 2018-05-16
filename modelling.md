@@ -224,7 +224,7 @@ wgs:long “24.9419037" .
 
 
 
-<!--
+
 
  [**To be revised**]
 
@@ -284,8 +284,4 @@ And then state:
 
 **qudt:Quantity → qudt:hasQuantityKind → qudt:QuantityKind → qudt:description →  "Height"**
 
-—>
 
-
-
-[^]: 
