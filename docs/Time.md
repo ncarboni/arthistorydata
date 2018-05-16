@@ -6,16 +6,19 @@ Ontologically speaking, the Time dimension is quite a complicated affair. Time, 
 
 The problem was originally solved, at least for calculus, by Allen in 1983. In order to overcome the calculation problem, Allen defined seven relationships useful for reasoning about time intervals (X, Y):
 
-​	* X before Y (P120)
+1. X before Y (P120)
+2. X meets Y (P119)
+3. X overlaps Y (P118)
+4. X during Y (P117)
+5. X starts Y (P116)
+6. X finishes Y (P115)
+7. X equals Y (P114)   
 
-1. X meets Y (P119)
-2. X overlaps Y (P118)
-3. X during Y (P117)
-4. X starts Y (P116)
-5. X finishes Y (P115)
-6. X equals Y (P114)
+<br>
 
-CIDOC-CRM was heavily influenced by this approach, and the properties associated with the Temporal entity in CRM refer exactly to these relationships.
+
+CIDOC-CRM was heavily influenced by this approach, and the properties associated with the Temporal entity in CRM refer exactly to these relationships.  
+
 
 1. P120 occurs before (occurs after)
 2. P119 meets in time with (is met in time by)
@@ -23,7 +26,10 @@ CIDOC-CRM was heavily influenced by this approach, and the properties associated
 4. P117 occurs during (includes)
 5. P116 starts (is started by)
 6. P115 finishes (is finished by)
-7. P114 is equal in time to
+7. P114 is equal in time to   
+
+<br>
+
 
 Each temporal entity has to be seen as part of a time dimension where we can calculate diversity, closeness or equality in time between described event using these expression. However, for such objective to be achieved, it is paramount to express time intervals not only using topological relationships between temporal entities but fixed time point. This solution open up the problem of a common standard. Time expressions can, in fact, differ. The cause of this diversity is geographical, cultural, normative or just based on personal preferences. Different date values would be: 
 
