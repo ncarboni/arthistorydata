@@ -10,7 +10,7 @@ For each entity, as an example of its use, an RDF encoding of a real-world state
 
 #### Note
 
-An appelation is a sign, usually in the form of a string of characters, used for referencing an entity (person object, place, an event etc.). More appellations can refer, in the same language, to the same entity, as in the case of:
+An appellation is a sign, usually in the form of a string of characters, used for referencing an entity (person object, place, an event etc.). More appellations can refer, in the same language, to the same entity, as in the case of:
 
 > Monna Lisa or La Gioconda. which both refers to the same painting
 
