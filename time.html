@@ -64,8 +64,9 @@
                 <div class="rst-content">
                     <div role="main" class="document">
                         <h1 id="cidoc-crm-amp-time">CIDOC-CRM &amp; Time</h1>
-<p>Ontologically speaking, the Time dimension is quite a complicated affair. Time, in fact, has different expressions, different calendars, and different degrees of certainty, making it very difficult to precisly calculate it, specifically in relation to diverse datasets. </p>
-<p>The problem was originally solved, at least for calculus, by Allen in 1983. In order to overcome the calculation problem, Allen defined seven relationships useful for reasoning about time intervals (X, Y):</p>
+<p>Ontologically speaking, the Time dimension is quite a complicated affair. Time, in fact, has different expressions in different calendars. Moreover, different degrees of certainty and precision, make it sometimes very difficult to calculate time intervals, specifically if diverse datasets are concerned.</p>
+<p>The problem was originally tackled, at least for calculus, by Allen in 1983. </p>
+<p>In order to overcome the calculation problem, Allen defined seven relationships useful for reasoning about time intervals (X, Y):</p>
 <ol>
 <li>X before Y (P120)</li>
 <li>X meets Y (P119)</li>
@@ -75,7 +76,7 @@
 <li>X finishes Y (P115)</li>
 <li>X equals Y (P114)   </li>
 </ol>
-<p>CIDOC-CRM was heavily influenced by this approach, and the properties associated with the Temporal entity in CRM refer exactly to these relationships.  </p>
+<p>CIDOC-CRM was heavily influenced by this approach, and the properties associated with the Temporal entities in CRM refer exactly to these relationships.  </p>
 <ol>
 <li>P120 occurs before (occurs after)</li>
 <li>P119 meets in time with (is met in time by)</li>
@@ -83,9 +84,11 @@
 <li>P117 occurs during (includes)</li>
 <li>P116 starts (is started by)</li>
 <li>P115 finishes (is finished by)</li>
-<li>P114 is equal in time to   </li>
+<li>
+<p>P114 is equal in time to   </p>
+<p>Temporal entities in CRM has to be seen as part of a time dimension where we can calculate diversity, closeness or equality in time between described event using these expression. However, for such objective to be achieved, it is paramount to express time intervals not only using topological relationships between temporal entities but fixed time point. This solution open up the problem of a common standard. Time expressions can, in fact, differ. The cause of this diversity is geographical, cultural, normative or just based on personal preferences. Different date values would be: </p>
+</li>
 </ol>
-<p>Each temporal entity has to be seen as part of a time dimension where we can calculate diversity, closeness or equality in time between described event using these expression. However, for such objective to be achieved, it is paramount to express time intervals not only using topological relationships between temporal entities but fixed time point. This solution open up the problem of a common standard. Time expressions can, in fact, differ. The cause of this diversity is geographical, cultural, normative or just based on personal preferences. Different date values would be: </p>
 <blockquote>
 <p>1 September 1890, 01/09/1890, 1-09-1890, 09/01/1890, 1st Sept 1980</p>
 </blockquote>
