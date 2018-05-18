@@ -2,9 +2,11 @@
 
 
 
-Ontologically speaking, the Time dimension is quite a complicated affair. Time, in fact, has different expressions, different calendars, and different degrees of certainty, making it very difficult to precisly calculate it, specifically in relation to diverse datasets. 
+Ontologically speaking, the Time dimension is quite a complicated affair. Time, in fact, has different expressions in different calendars. Moreover, different degrees of certainty and precision, make it sometimes very difficult to calculate time intervals, specifically if diverse datasets are concerned.
 
-The problem was originally solved, at least for calculus, by Allen in 1983. In order to overcome the calculation problem, Allen defined seven relationships useful for reasoning about time intervals (X, Y):
+The problem was originally tackled, at least for calculus, by Allen in 1983. 
+
+In order to overcome the calculation problem, Allen defined seven relationships useful for reasoning about time intervals (X, Y):
 
 1. X before Y (P120)
 2. X meets Y (P119)
@@ -15,7 +17,7 @@ The problem was originally solved, at least for calculus, by Allen in 1983. In o
 6. X equals Y (P114)   
 
 
-CIDOC-CRM was heavily influenced by this approach, and the properties associated with the Temporal entity in CRM refer exactly to these relationships.  
+CIDOC-CRM was heavily influenced by this approach, and the properties associated with the Temporal entities in CRM refer exactly to these relationships.  
 
 
 1. P120 occurs before (occurs after)
@@ -27,7 +29,7 @@ CIDOC-CRM was heavily influenced by this approach, and the properties associated
 7. P114 is equal in time to   
 
 
-Each temporal entity has to be seen as part of a time dimension where we can calculate diversity, closeness or equality in time between described event using these expression. However, for such objective to be achieved, it is paramount to express time intervals not only using topological relationships between temporal entities but fixed time point. This solution open up the problem of a common standard. Time expressions can, in fact, differ. The cause of this diversity is geographical, cultural, normative or just based on personal preferences. Different date values would be: 
+ Temporal entities in CRM has to be seen as part of a time dimension where we can calculate diversity, closeness or equality in time between described event using these expression. However, for such objective to be achieved, it is paramount to express time intervals not only using topological relationships between temporal entities but fixed time point. This solution open up the problem of a common standard. Time expressions can, in fact, differ. The cause of this diversity is geographical, cultural, normative or just based on personal preferences. Different date values would be: 
 
 > 1 September 1890, 01/09/1890, 1-09-1890, 09/01/1890, 1st Sept 1980
 
