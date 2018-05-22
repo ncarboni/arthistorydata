@@ -98,4 +98,53 @@ The typed property PC14 carried out by is used when we need to represent additio
 <http://example.org/type/author> a crm:E55_Type .
 ```
 
-[^]: 
+### Publisher
+
+As publisher we understand the actor(s) responsible for the creation of a F24 Publication Expression. A publisher may be the same as the printer, in which case they are also the actor responsible for the F32 Carrier Production Event.
+
+We model the creation of the F24 Publication Expression as follows:
+
+1. **F24 Publication Expression → R24i was created through → F30 Publication Event**
+
+The publisher is then represented as the actor carrying out the event
+
+1. **F30 Publication Event  → P14 carried out by → E39 Actor**
+
+
+```ttl
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
+
+<http://example.org/book/publication> a frbroo:F24_Publication_Expression ;
+    frbroo:R24i_was_created_through <http://example.org/book/publication/event> .
+
+<http://example.org/book/publication/event> a frbroo:F30_Publication_Event ;
+    crm:P14_carried_out_by <http://example.org/actor> .
+
+<http://example.org/actor> a crm:E39_Actor .
+```
+
+### Date published
+
+The publishing date is the date the F30 Publication has been carried out.
+
+It is modelled as follows:
+
+1. **F30 Publication Event → P4 has time-span  → E52 Time-Span**
+
+See the section on Time for more detail on how to model time spans. In bibliographic data we typically have a year, which we model using the **P82a** and **P82b** properties. For readability, we also include the year as a rdfs:label to the E52 Time-Span.
+
+See the following example:
+
+```ttl
+@prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
+
+<http://example.org/book/publication/event> a frbroo:F30_Publication_Event ;
+    crm:P4_has_time-span <http://example.org/book/publication/date> .
+
+<http://example.org/book/publication/date> a crm:E52_Time-Span ;
+	rdfs:label "1980" ;
+	crm:P82a_begin_of_the_beginning "1980-01-01"^^xsd:date;
+ 	crm:P82b_end_of_the_end  "1980-12-31"^^xsd:date .
+```
