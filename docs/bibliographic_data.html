@@ -142,7 +142,44 @@
 &lt;http://example.org/actor&gt; a crm:E39_Actor .
 
 &lt;http://example.org/type/author&gt; a crm:E55_Type .</code></pre>
-<p>[^]: </p>
+<h3 id="publisher">Publisher</h3>
+<p>As publisher we understand the actor(s) responsible for the creation of a F24 Publication Expression. A publisher may be the same as the printer, in which case they are also the actor responsible for the F32 Carrier Production Event.</p>
+<p>We model the creation of the F24 Publication Expression as follows:</p>
+<ol>
+<li><strong>F24 Publication Expression → R24i was created through → F30 Publication Event</strong></li>
+</ol>
+<p>The publisher is then represented as the actor carrying out the event</p>
+<ol>
+<li><strong>F30 Publication Event  → P14 carried out by → E39 Actor</strong></li>
+</ol>
+<pre><code class="language-ttl">@prefix frbroo: &lt;http://iflastandards.info/ns/fr/frbr/frbroo/&gt;.
+@prefix crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt;.
+
+&lt;http://example.org/book/publication&gt; a frbroo:F24_Publication_Expression ;
+    frbroo:R24i_was_created_through &lt;http://example.org/book/publication/event&gt; .
+
+&lt;http://example.org/book/publication/event&gt; a frbroo:F30_Publication_Event ;
+    crm:P14_carried_out_by &lt;http://example.org/actor&gt; .
+
+&lt;http://example.org/actor&gt; a crm:E39_Actor .</code></pre>
+<h3 id="date-published">Date published</h3>
+<p>The publishing date is the date the F30 Publication has been carried out.</p>
+<p>It is modelled as follows:</p>
+<ol>
+<li><strong>F30 Publication Event → P4 has time-span  → E52 Time-Span</strong></li>
+</ol>
+<p>See the section on Time for more detail on how to model time spans. In bibliographic data we typically have a year, which we model using the <strong>P82a</strong> and <strong>P82b</strong> properties. For readability, we also include the year as a rdfs:label to the E52 Time-Span.</p>
+<p>See the following example:</p>
+<pre><code class="language-ttl">@prefix frbroo: &lt;http://iflastandards.info/ns/fr/frbr/frbroo/&gt;.
+@prefix crm: &lt;http://www.cidoc-crm.org/cidoc-crm/&gt;.
+
+&lt;http://example.org/book/publication/event&gt; a frbroo:F30_Publication_Event ;
+    crm:P4_has_time-span &lt;http://example.org/book/publication/date&gt; .
+
+&lt;http://example.org/book/publication/date&gt; a crm:E52_Time-Span ;
+    rdfs:label "1980" ;
+    crm:P82a_begin_of_the_beginning "1980-01-01"^^xsd:date;
+    crm:P82b_end_of_the_end  "1980-12-31"^^xsd:date .</code></pre>
                     </div>
 
                     <footer>
