@@ -6,7 +6,7 @@ Note: the information here is based on FRBRoo 2.4, which is the latest release a
 
 ## References
 
-The examples are based on the data of the [Sphaera](http://sphaera.mpiwg-beriln.mpg.de) project. The data model for this was developed following the guidelines in:
+The examples are based on the data of the [Sphaera](http://sphaera.mpiwg-berlin.mpg.de) project. The data model for this was developed following the guidelines in:
 
  Doerr, M., Gradmann, S., LeBoeuf, P., Aalberg, T., Bailly, R., & Olensky, M. (2013). _Final Report on EDM - FRBRoo Application Profile Task Force_. Europeana. Retrieved from <http://pro.europeana.eu/taskforce/edm-frbroo-application-profile>
 
