@@ -148,3 +148,35 @@ See the following example:
 	crm:P82a_begin_of_the_beginning "1980-01-01"^^xsd:date;
  	crm:P82b_end_of_the_end  "1980-12-31"^^xsd:date .
 ```
+
+#### Implementation in ResearchSpace
+
+We require users to specify three dates: the earliest year, the latest year and a textual date. If the exact year is known, users enter the same year in all three fields. If the exact year is not known, users can enter boundaries in the earliest and latest field and specify a verbal description in the textfield (e.g. "ca. 1950"). This setup works in our case, where most years are specified, but might not be the best solution when dates are uncertain (see Time section for further discussion on this).
+
+ResearchSpace offers a Date Input field. However, it requires a complete date whereas we want to allow users to just enter a year. This year then gets translated to 1 January for the earliest year and 31 December for the latest year. This step is necessary to enable searching and for the data that is stored in the dataset to be properly formated (xsd:date).
+
+The insert pattern for the earliest publication date looks as follows:
+
+```sparql
+INSERT { 
+  ?publication_event crm:P4_has_time-span ?time_span .
+  ?time_span a ecrm:E52_Time-Span ;
+  	crm:P82a_begin_of_the_beginning ?value_begin .
+} WHERE {
+  BIND(xsd:date(CONCAT(STR($value), "-01-01")) as ?value_begin)
+  BIND(URI(CONCAT(STR($subject), "/publication/event")) as ?publication_event)
+  BIND(URI(CONCAT(STR($subject), "/publication/date")) as ?time_span)
+}
+```
+
+The bound ``$value`` is converted to a ``xsd:date`` and bound to ``?value_begin`` which is the value that is written into the database. The conversion to ``xsd:date`` occurs when writing to the database, which means the XSD Datatype of the field needs to be empty and a validation needs to occur via a ASK query.
+
+For example, the following query validates the input as a four digit number:
+
+
+```sparql
+ASK { 
+  BIND(STRLEN(STR(xsd:integer($value))) as $num_value_len)
+  FILTER($num_value_len = 4)  
+} 
+```
