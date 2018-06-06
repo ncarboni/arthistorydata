@@ -69,9 +69,29 @@
                         <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <h1 id="readme">README</h1>
-<p>In this repository are present some information about the modelling of CRM entities by Villa I Tatti in the context of the Art History Data programme.</p>
-<p>The choices are expressed in <a href="https://github.com/ncarboni/arthistorydata/blob/master/modelling.html">Modelling.md</a> and, based on that, rendered as a webpage available at the address <a href="https://ncarboni.github.io/arthistorydata/">https://ncarboni.github.io/arthistorydata/</a></p>
+                        <h1 id="images">Images</h1>
+<p><strong>This is a draft for the modelling of image data in CIDOC-CRM with reference to IIIF</strong></p>
+<h2 id="images-and-iiif">Images and IIIF</h2>
+<p>The <a href="http://iiif.io/">IIIF</a> <a href="http://iiif.io/api/image/2.1/">Image API</a> defines a standard URI format for accessing images on the web. The format is:</p>
+<pre><code>{scheme}://{server}{/prefix}/{identifier}/{region}/{size}/{rotation}/{quality}.{format}</code></pre>
+<p>For example:</p>
+<pre><code>http://www.example.org/image-service/abcd1234/full/full/0/default.jpg</code></pre>
+<p>In addition, it defines a standard format for information about an image as follows:</p>
+<pre><code>{scheme}://{server}{/prefix}/{identifier}/info.json</code></pre>
+<p>For example:</p>
+<pre><code>http://www.example.org/image-service/abcd1234/info.json</code></pre>
+<p>The information is returned in <a href="https://www.w3.org/TR/json-ld/">JSON-LD</a> format.</p>
+<p>The JSON-LD contains an @id which specifies the URI of the profile. This can (but does not need to?) follow the same schema:</p>
+<pre><code>{scheme}://{server}{/prefix}/{identifier}</code></pre>
+<p>Hence the URI resolves to the information about the image, not the image itself.</p>
+<h2 id="iiif-and-cidoc-crm">IIIF and CIDOC-CRM</h2>
+<p>The above URI resolves to a JSON-LD document which contains information about the image. It can therefore be represented in CIDOC-CRM as a <em>E31 Document</em> which <em>P70 documents</em> the image.</p>
+<p>The image itself is represented as a <em>E38 Image</em>. The URI of the image can be chosen freely. In practice it is however likely, that the image URI will share the identifier part with the IIIF URI. E.g.</p>
+<pre><code class="language-ttl">  &lt;http://www.example.org/image/abcd1234&gt; a crm:E38_Image .
+  &lt;http://www.example.org/image-service/abcd1234&gt; a crm:E31_Document ;
+    crm:P70_documents &lt;http://www.example.org/image/abcd1234&gt;</code></pre>
+<p>For ease of querying, the IIIF Document could be typed:</p>
+<pre><code class="language-ttl">  &lt;http://www.example.org/image-service/abcd1234&gt; crm:P2_has_type &lt;http://iiif.io/api/image&gt;</code></pre>
                     </div>
 
                     <footer>
