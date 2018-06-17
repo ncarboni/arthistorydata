@@ -85,13 +85,18 @@
 <pre><code>{scheme}://{server}{/prefix}/{identifier}</code></pre>
 <p>Hence the URI resolves to the information about the image, not the image itself.</p>
 <h2 id="iiif-and-cidoc-crm">IIIF and CIDOC-CRM</h2>
-<p>The above URI resolves to a JSON-LD document which contains information about the image. It can therefore be represented in CIDOC-CRM as a <em>E31 Document</em> which <em>P70 documents</em> the image.</p>
-<p>The image itself is represented as a <em>E38 Image</em>. The URI of the image can be chosen freely. In practice it is however likely, that the image URI will share the identifier part with the IIIF URI. E.g.</p>
-<pre><code class="language-ttl">  &lt;http://www.example.org/image/abcd1234&gt; a crm:E38_Image .
-  &lt;http://www.example.org/image-service/abcd1234&gt; a crm:E31_Document ;
-    crm:P70_documents &lt;http://www.example.org/image/abcd1234&gt;</code></pre>
-<p>For ease of querying, the IIIF Document could be typed:</p>
-<pre><code class="language-ttl">  &lt;http://www.example.org/image-service/abcd1234&gt; crm:P2_has_type &lt;http://iiif.io/api/image&gt;</code></pre>
+<p>The IIIF URI resolves to a JSON-LD document which contains information about the image, not the image itself. It may nevertheless, for practical purposes, be treated as an image – this is the route chosen by the <a href="http://linked.art/model/object/digital/">linked.art</a> model, which types it as a E36 Visual Item.</p>
+<p>There can be reasons why one wants to use a different URI for the image. For example, if the IIIF endpoint might change in the future, but the URI should remain the same. Or, if the image URI serves as the basis for other URIs (e.g. <a href="http://www.example.org/image/abcd1234/manifest">http://www.example.org/image/abcd1234/manifest</a>) and one wants to avoid potential collision with the IIIF namespace.</p>
+<p>The proposal here is to use a different URI for the image (for the above reasons), but to construct it so that the identifier matches the IIIF schema. The Image is the subject of the IIIF information.</p>
+<p>e.g.</p>
+<pre><code class="language-ttl">&lt;http://www.example.org/image/abcd1234&gt; a crm:E38_Image .
+&lt;http://www.example.org/image-service/abcd1234&gt; a crm:E73_Information_Object ;
+  crm:P129_is_about &lt;http://www.example.org/image/abcd1234&gt; ;
+  crm:P2_has_type &lt;http://iiif.io/api/image&gt;</code></pre>
+<p>If the IIIF URI is used to directly represent the image, one can model it as:</p>
+<p>e.g.</p>
+<pre><code class="language-ttl">&lt;http://www.example.org/image-service/abcd1234&gt; a crm:E38_Image ;
+  crm:P2_has_type &lt;http://iiif.io/api/image&gt;</code></pre>
                     </div>
 
                     <footer>
