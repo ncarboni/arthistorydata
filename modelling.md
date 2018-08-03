@@ -1,5 +1,10 @@
-# CORDH Data Harmonisation Group
+# CORDH Data Harmonisation Group  
 
+
+{{TOC}}  
+  
+  
+----
 
 *CRM modelling & examples*
 
@@ -76,7 +81,7 @@ rdfs:label "6c5a29fd8" .
 *<small>Codebox 2  - Identifier</small>*
 
 
-### Preferred Appellations & Identifiers
+## Preferred Appellations & Identifiers
 
 The preference for a specific sign or string for identifying an entity will be modelled using type. 
 In respect to the encoding of the [appellation](#appellation) or the [identifier](#identifier), the initial part of the modelling remain the same:
