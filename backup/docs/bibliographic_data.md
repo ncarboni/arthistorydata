@@ -32,7 +32,7 @@ The components are modelled as follows:
 3. **F5 Item → R7 is example of → F3 Manifestation Product Type**
 4. **F1 Work → R3 is realised in → F22 Self-Contained Expression**
 
-```turtle
+```ttl
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
 
@@ -61,7 +61,7 @@ The author is then represented as the actor carrying out the event
 
 1. **F28 Expression Creation → P14 carried out by → E39 Actor**
 
-```turtle
+```ttl
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
 
@@ -79,7 +79,7 @@ The typed property PC14 carried out by is used when we need to represent additio
 1. **F28 Expression Creation → P01 is domain of → PC14 carried out by → P02 has range → E39 Actor**
 2. **PC14 carried out by → P14.1 in the role of → E55 Type**
 
-```turtle
+```ttl
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
 
@@ -111,7 +111,7 @@ The publisher is then represented as the actor carrying out the event
 1. **F30 Publication Event  → P14 carried out by → E39 Actor**
 
 
-```turtle
+```ttl
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
 
@@ -136,7 +136,7 @@ See the section on Time for more detail on how to model time spans. In bibliogra
 
 See the following example:
 
-```turtle
+```ttl
 @prefix frbroo: <http://iflastandards.info/ns/fr/frbr/frbroo/>.
 @prefix crm: <http://www.cidoc-crm.org/cidoc-crm/>.
 

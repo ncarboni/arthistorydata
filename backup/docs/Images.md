@@ -46,7 +46,7 @@ The proposal here is to use a different URI for the image (for the above reasons
 
 e.g.
 
-```turtle
+```ttl
 <http://www.example.org/image/abcd1234> a crm:E38_Image .
 <http://www.example.org/image-service/abcd1234> a crm:E73_Information_Object ;
   crm:P129_is_about <http://www.example.org/image/abcd1234> ;
@@ -57,7 +57,7 @@ If the IIIF URI is used to directly represent the image, one can model it as:
 
 e.g.
 
-```turtle
+```ttl
 <http://www.example.org/image-service/abcd1234> a crm:E38_Image ;
   crm:P2_has_type <http://iiif.io/api/image>
 ```

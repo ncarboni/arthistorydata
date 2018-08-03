@@ -1,0 +1,23 @@
+site_name: CIDOC-CRM as RDF
+repo_url: https://github.com/ncarboni/arthistorydata
+site_description: CORDH Data Harmonisation Working Group
+pages:
+    - Home: index.md
+    - Entities: modelling.md
+    - Time: time.md
+    - Images: Images.md
+    - Bibliographic Data: bibliographic_data.md
+theme: 
+  name: material
+  logo:
+    icon: 'description'
+  palette:
+    primary: 'red'
+markdown_extensions:
+  - pymdownx.smartsymbols
+  - pymdownx.mark
+  - meta
+  - footnotes
+markdown_extensions:
+  - codehilite:
+      linenums: true
