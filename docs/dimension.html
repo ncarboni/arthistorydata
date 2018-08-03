@@ -41,18 +41,6 @@
                                 Bibliographic Data
                             </a>
                         </li>
-                                            <li class="toctree-l1 ">
-                            <a class="reference internal "
-                               href="https://ncarboni.github.io/arthistorydata/docs/dimension.html">
-                                Dimension
-                            </a>
-                        </li>
-                                            <li class="toctree-l1 ">
-                            <a class="reference internal "
-                               href="https://ncarboni.github.io/arthistorydata/docs/images.html">
-                                Images
-                            </a>
-                        </li>
                                     </ul>
             </div>
             &nbsp;
@@ -69,36 +57,24 @@
                         <div class="wy-nav-content">
                 <div class="rst-content">
                     <div role="main" class="document">
-                        <p>[<strong>To be revised</strong>]</p>
-<h2 id="dimensionquantity">Dimension/Quantity</h2>
+                        <h2 id="dimensionquantity">Dimension/Quantity</h2>
 <h4 id="note">Note</h4>
 <p>Dimension are measurable data which results from an observation. The outcome of an observation is always to be seen as a couple value/system where the meaning of the value is dependant on the system used.</p>
-<p>Dimensions can be modelled in CRM as:</p>
-<p><strong>E54 Dimension → P91 has unit →  E58 Measurement Unit</strong></p>
-<p><strong>E54 Dimension → P90 has value →  E60 Number</strong></p>
-<pre><code class="language-xml-dtd">https://collection.itatti.harvard.edu/resource/dimension/example a crm:E54_Dimension ;
-rdf:value   "6" ;
-rdf:literal "centimeters" .</code></pre>
-<p>The modelling above is based on the differentiation between the value and the system which provide meaning to the value. This type of statements works if there is no real need of a proper measurement analysis or comparison. rdf:value and rdfs:literal are, in fact, quite neutral:</p>
-<ul>
-<li>rdf:value can be used to describe structural value, bu carries no meaning of its own.  </li>
-<li>rdfs:literal is just a class of literal value, and has no connection to any type of structured measurement unit.</li>
-</ul>
-<p>Depending on the needs, the solution to this problem could be resolved using rdfs:isDefinedby plus an external authority for the measurement unit.</p>
-<pre><code class="language-xml-dtd">https://collection.itatti.harvard.edu/resource/dimension/example a crm:E54_Dimension ;
-rdf:value   "6" ;
-rdfs:isDefinedBy "http://qudt.org/vocab/unit/CM" ;
-crm:P2_has_type “width" .</code></pre>
-<p>In the above example we use QUDT as authority for the centimeters unit. QUDT is the &quot;Quantity, Unit, Dimension and Type&quot; schema used for modeling physical measurable properties in a machine processable form, with no ambiguities. QUDT does not only provide a basic vocabulary of units, but it is also a formal ontology used for dimensional modelling. A NASA-sponsored initiative provide a clearer way to fix quantities, value and dimension to meaning-provider system as well as compare and convert quanty information. </p>
-<p>QUDT seems to be the perfect candidate for representing dimensionla data, however it is not yet mapped with CRM. From an initial analysis appear that crm:E54_Dimension correspond to the qudt:Quantity class, and not on qudt:Dimension as the label suggest. The class qudt:Dimension is, in fact, a relationship between &quot;<em>a quantity systems, a quantity kind of that system, and one or more dimension vectors. The dimension of a quantity can be expressed as a product of basic dimension vectors for each of the system's base quantiy kinds, such as mass, length and time</em>&quot;.</p>
-<p>It is possible to map qudt:Quantity as a subclass of crm:E54_Dimension:</p>
-<pre><code class="language-xml-dtd">&lt;rdfs:Class rdf:about="http://qudt.org/schema/qudt/Quantity"&gt;
-        &lt;rdfs:subClassOf rdf:resource="crm:E54_Dimension"/&gt;
-    &lt;/rdfs:Class&gt;</code></pre>
-<p>And then state:</p>
-<p><strong>qudt:Quantity → qudt:quantityValue  → qudt:QuantityValue → qudt:numericValue  → xsd:double</strong></p>
-<p><strong>qudt:QuantityValue → qudt:unit → <a href="http://qudt.org/vocab/unit/CM">http://qudt.org/vocab/unit/CM</a> </strong></p>
-<p><strong>qudt:Quantity → qudt:hasQuantityKind → qudt:QuantityKind → qudt:description →  &quot;Height&quot;</strong></p>
+<p>Dimensions can be modelled in CRM as:
+<strong>E54 Dimension → P91 has unit →  E58 Measurement Unit</strong>
+<strong>E54 Dimension → P90 has value →  E60 Number</strong></p>
+<p>The modelling above is based on the differentiation between the value and the system which provide meaning to the value. </p>
+<h3 id="modelling-dimension">Modelling Dimension</h3>
+<p>When talking about Dimension it is paramount to use an external recognisable authority to define the system which provide meaning to the value.
+In order to define the measurement units and the the quantity kind (length, weight) we rely on E55 Type and the vocabulary provided with the Ontology of units of measure (OM). </p>
+<pre><code class="language-xml-dtd">&lt;https://collection.itatti.harvard.edu/resource/dimension/example&gt; a crm:E54_Dimension ;
+crm:P90_has_value   "6"^^xsd:decimal ;
+crm:P91_has_unit &lt;http://www.ontology-of-units-of-measure.org/resource/om-2/centimetre&gt; ;
+crm:P2_has_type &lt;http://www.ontology-of-units-of-measure.org/resource/om-2/Width&gt; .</code></pre>
+<p>OM includes all the necessary dimensions required by our use cases. It is easy to browse, and well developed.</p>
+<p>Other ontologies were considered, specifically QUDT, which is &quot;Quantity, Unit, Dimension and Type&quot; schema used for modelling physical measurable properties in a machine processable form. While QUDT was the initial candidate, it was not chosen because the browsing of the units was quite difficult and, moreover, it is still under development and not yet complete or stable.   </p>
+<p>OM can be easily browsed here:
+<a href="[http://www.ontology-of-units-of-measure.org"><a href="http://www.ontology-of-units-of-measure.org/">http://www.ontology-of-units-of-measure.org/</a></a></p>
                     </div>
 
                     <footer>
