@@ -61,7 +61,3 @@ menu:
             text: Bibliographic Data
             # You can use relative urls
             relativeUrl: docs/bibliographic_data.html
-        dimension:
-            text: Dimension
-            # You can use relative urls
-            relativeUrl: docs/dimension.html
