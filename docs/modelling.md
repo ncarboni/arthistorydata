@@ -7,10 +7,10 @@
 
 *CRM modelling & examples*
 
-The document outlines modelling choices in relation to diverse entities described in the Consortium's data. The modelling is provided, whenever possible, using CIDOC-CRM. However, in certain cases other ontologies are used. 
-For each of the described entities diverse encoding choices were outlined, and decision about them were made. Scope of this document is not to provide a track of this process, but just to present its results. The documentation of the possible modelling and encoding of an entity in RDF can be found in the [Annex A](#).
+The document outlines modelling choices in relation to diverse entities described in the Consortium's data. The modelling is provided, whenever possible, using CIDOC-CRM. However, in certain cases, other ontologies are used. 
+For each of the described entities diverse encoding choices were outlined, and a decision about each of them was made. The scope of this document is not to provide a track of this process, but just to present its results. The documentation of the possible modelling and encoding of an entity in RDF can be found in the [Annex A](#).
 
-For each entity, as an example of its use, an RDF encoding of a real-world statements is provided. The syntax of the encoding is Turtle, and all the prefix used can be found on [http://prefix.cc/](http://prefix.cc/) .
+For each entity, as an example of its use, an RDF encoding of a real-world statement is provided. The syntax of the encoding is Turtle, and all the prefix used can be found on [http://prefix.cc/](http://prefix.cc/).
 
 ## Appellation 
 
@@ -24,7 +24,7 @@ Appellations can also be tied to a specific time interval, such as in the case o
 
 > Prince, Alexander Nevermind, The Artist, The Artist Formerly Known as Prince (TAFKAP), Camille, Christopher, Tracy Jamie Starr, Joey Coco, Tora Tora, The Kid — which refers to Prince Rogers Nelson in diverse moments of his career
 
-However, If more appellations can cohexist, a chosen one should be defined using a different property which identifies it with our <u>preferred</u> appellation.
+However, If more appellations can coexist, a chosen one should be defined using a different property which identifies it with our <u>preferred</u> appellation.
 
 ### Modelling the Appellation
 
@@ -56,7 +56,7 @@ rdfs:label "Gian Francesco de Maineri" .
 
 #### Note
 
-An identifier is a string assigned to an entity that uniquely identify it in a system (usually, a digital system). Examples of identifiers comprises inventory numbers, databases keys or other strings used for retrieval and identification purpose. As for the appellation, an entity can has multiple identifiers from the same or different system, and a preferred one can be chosen.
+An identifier is a string assigned to an entity that uniquely identifies it in a system (usually, a digital system). Examples of identifiers comprise inventory numbers, databases keys or other strings used for retrieval and identification purpose. As for the appellation, an entity can have multiple identifiers from the same or different system, and a preferred one can be chosen.
 
 ### Modelling the Identifier
 
@@ -105,7 +105,7 @@ crm:P2_has_type "http://vocab.getty.edu/page/aat/300404670"^^xsd:anyURI .
 ```
 *<small>Codebox 3  - Preferred Appellation</small>*
 
-If one appellation is represented using diverse alphabets (Latin, Chinese, Greek, Russian..), it would be treated as the same E41 Appellation, and the different strings encoded with rdfs:label. In this case only,skos:prefLabel can be used to defined the preferred textual version of the same appellation.
+If one appellation is represented using diverse alphabets (Latin, Chinese, Greek, Russian..), it would be treated as the same E41 Appellation, and the different strings encoded with rdfs:label. In this case only,skos:prefLabel can be used to define the preferred textual version of the same appellation.
 
 
 ```turtle
@@ -122,8 +122,8 @@ rdfs:label "果戈里" .
 
 **Modelling Note**
 
-> *CRM does provide a property for encoding a preferred identifier, P48 has preferred identifier, but the range is E42 Identifier, a subclass of E41 Appellation, therefore it cannot be used for encoding the preferred appellation. While it can be used at least for the preferred we opted for standard solution for both classes*
-> While the use of skos:prefLabel was considered, it was easily rejected because if a persons has multiple appellation, skos:prefLabel would not identify the preferred one, but only the preferred string of text of that specific appellation.
+> *CRM does provide a property for encoding a preferred identifier, P48 has preferred identifier, but the range is E42 Identifier, a subclass of E41 Appellation, therefore it cannot be used for encoding the preferred appellation. While it can be used at least for the preferred we opted for a standard solution for both classes*
+> While the use of skos:prefLabel was considered, it was easily rejected because if a person has multiple appellations, skos:prefLabel would not identify the preferred one, but only the preferred string of text of that specific appellation.
 
 ## Language for Literals
 *To be completed*
@@ -143,12 +143,12 @@ The modelling above is based on the differentiation between the value and the sy
 
 ### Modelling Dimension
 
-When talking about Dimension it is paramount to use an external recognisable authority to define the system which provide meaning to the value.
-In order to define the measurement units and the the quantity kind (length, weight) we rely on E55 Type and the vocabulary provided with the Ontology of units of measure (OM). 
+When talking about Dimension it is paramount to use an external recognisable authority to define the system which provides meaning to the value.
+In order to define the measurement units and the quantity kind (length, weight) we rely on E55 Type and the vocabulary provided with the Ontology of units of measure (OM). 
 
 ```turtle
 <https://collection.itatti.harvard.edu/resource/dimension/example> a crm:E54_Dimension ;
-crm:P90_has_value	"6"^^xsd:decimal ;
+crm:P90_has_value    "6"^^xsd:decimal ;
 crm:P91_has_unit <http://www.ontology-of-units-of-measure.org/resource/om-2/centimetre> ;
 crm:P2_has_type <http://www.ontology-of-units-of-measure.org/resource/om-2/Width> .
 ```
@@ -164,16 +164,16 @@ OM can be easily browsed here:
 
 #### Note
 
-CIDOC-CRM assume the existence of a SpaceTime dimension, where each temporal entity can be mapped to. This system allow the computing of diversity, closeness or equality in time between events. In doing so, it treats temporal extents in their physical sense, characterising each time interval with a beginning, an end and a duration. Additionally, CIDOC-CRM assume that our knowledge of the time intervals of an historical event has diverse degree of certainty, and it allow us to record such certainty/uncertainty with specific properties. A useful summarisation of the treatment of time in CIDOC-CRM is available in the document [Time](time.html).  
+CIDOC-CRM assume the existence of a SpaceTime dimension, where each temporal entity can be mapped to. This system allows the computing of diversity, closeness or equality in time between events. In doing so, it treats temporal extents in their physical sense, characterising each time interval with a beginning, an end and a duration. Additionally, CIDOC-CRM assumes that our knowledge of the time intervals of a historical event has a diverse degree of certainty, and it allows us to record such certainty/uncertainty with specific properties. A useful summarization of the treatment of time in CIDOC-CRM is available in the document [Time](time.html).  
 
-Following CIDOC-CRM we will model time-related assertions as certain or uncertain, where the certain statements are going to be model using the property P81, while the uncertain statements using the property P82. The level of certainty have to be determined by the researcher carrying out the work. 
+Following CIDOC-CRM we will model time-related assertions as certain or uncertain, where the certain statements are going to be model using the property P81, while the uncertain statements using the property P82. The level of certainty has to be determined by the researcher carrying out the work. 
 
 We can have two diverse modelling scenario:
 
 1. Fuzzy time statements
 2. Precise time statements
 
-In both cases the date is formatted following the [ISO 8601:2004](https://www.iso.org/standard/40874.html) reccomandations that prescribe the composition of the date using the format:
+In both cases the date is formatted following the [ISO 8601:2004](https://www.iso.org/standard/40874.html) recommendations that prescribe the composition of the date using the format:
 
 > YYYY-MM-DD
 
@@ -188,7 +188,7 @@ Fuzzy time statements are modelled using CIDOC-CRM as:
 Change to dateTime
 -->
 
-The date need to be expressed with its datatype (date or dateTime). See the [W3C reccomandations](https://www.w3.org/TR/xmlschema-2/#isoformats) for more details.
+The date needs to be expressed with its datatype (date or dateTime). See the [W3C reccomandations](https://www.w3.org/TR/xmlschema-2/#isoformats) for more details.
 
 ```turtle
 <https://collection.itatti.harvard.edu/resource/work/W00060289/production/timespan>
@@ -229,7 +229,7 @@ crm:P81b_end_of_the_end      "2001-10-26T00:00:00"^^xsd:dateTime.
 
 #### Note
 
-A place is a section of space identified independently from its temporal status. They are usually referenced using absolute (WGS, EPSG) or relative reference systems. Absolute reference system use point-based coordinates to identify representation of space.
+A place is a section of space identified independently from its temporal status. They are usually referenced using absolute (WGS, EPSG) or relative reference systems. Absolute reference system uses point-based coordinates to identify the representation of a space.
 
 
 
@@ -241,11 +241,11 @@ The spatial coordinates of a place can be modelled in CIDOC-CRM as
 
 The encoding of the latitude and longitude can be done in multiple ways. The form chosen by the consortium is to rely on a basic RDF vocabulary for representing latitude and longitude using WGS84 as a reference system. In order to do so, we will have to map the class crm:E47_Spatial_Coordinates with the corresponding class in [W3C-Basic-Geo](https://www.w3.org/2003/01/geo/).
 
-We can declare geo:Point as sub class of crm:E47_Spatial_Coordinates with the following
+We can declare geo:Point as a subclass of crm:E47_Spatial_Coordinates with the following
 
 ```turtle
 <rdfs:Class rdf:about="http://www.w3.org/2003/01/geo/wgs84_pos#Point">
-	<rdfs:subClassOf rdf:resource="E47_Spatial_Coordinates"/>
+    <rdfs:subClassOf rdf:resource="E47_Spatial_Coordinates"/>
 </rdfs:Class>
 ```
 *<small>Codebox 7</small>*
@@ -255,7 +255,7 @@ Having mapped crm:E47_Spatial_Coordinates to geo:Point we can use two new proper
  * geo:lat
  * geo:long
 
-To describe, respectively, the latitude and longitude of a E53 Place.
+To describe, respectively, the latitude and longitude of an E53 Place.
 
 ```turtle
 https://collection.itatti.harvard.edu/resource/ex/place/ a crm:E53_Place ;
