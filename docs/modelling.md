@@ -147,10 +147,15 @@ When talking about Dimension it is paramount to use an external recognisable aut
 In order to define the measurement units and the quantity kind (length, weight) we rely on E55 Type and the vocabulary provided with the Ontology of units of measure (OM). 
 
 ```turtle
-<https://collection.itatti.harvard.edu/resource/dimension/example> a crm:E54_Dimension ;
+<https://collection.itatti.harvard.edu/resource/dimension/width> a crm:E54_Dimension ;
 crm:P90_has_value    "6"^^xsd:decimal ;
 crm:P91_has_unit <http://www.ontology-of-units-of-measure.org/resource/om-2/centimetre> ;
 crm:P2_has_type <http://www.ontology-of-units-of-measure.org/resource/om-2/Width> .
+
+<https://collection.itatti.harvard.edu/resource/dimension/lenght> a crm:E54_Dimension ;
+crm:P90_has_value    "12"^^xsd:decimal ;
+crm:P91_has_unit <http://www.ontology-of-units-of-measure.org/resource/om-2/centimetre> ;
+crm:P2_has_type <http://www.ontology-of-units-of-measure.org/resource/om-2/Length> .
 ```
 
 OM includes all the necessary dimensions required by our use cases. It is easy to browse, and well developed.
