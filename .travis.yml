@@ -15,9 +15,9 @@ branches: master # Set the branch to build from
 
 install:
     - pip install mkdocs # Install the required dependencies
-    -  pip install mkdocs-material
-    -  pip install pymdown-extensions
-    -  pip install pygments
+    - pip install mkdocs-material
+    - pip install pymdown-extensions
+    - pip install pygments
 
 before_deploy:
     - mkdocs build --verbose --clean --strict # Build a local version of the docs
