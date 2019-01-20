@@ -1,0 +1,20 @@
+env:
+  global:
+    secure: aIxtHytLMSNEy3+WMF2HlE4izN9epAiwW/eSGBSaU6whzzcCJjbczgocDE6Mh1nnHmDo3caIPam0vvsM8U+WmTSMdwUePe6mD3JcORFDSCntd0BHQ8avkvxZQm9cZM1hxTK8IjB82jjiogknatryNnwVn6DvDxQQooy73ootUcgeKkZfsJL2cQbXDTVoxBnLSOgX5uvvuRmvgjKSeBcRSoCTHp86ezmPDqA1PfN3wtw9M3heR6Odw0MmK/OM4r/G32R/qSNURvdlS2nczsLQI0Fqqm+JZSo0leG4wMHtFsDX2azT6vUEdO79gqEkcloO8bNKb6nx+3IwVPlniNyXmphGsqoYEFXOtVZ7tPHA1BhEkjIsA8SNVCEzrsG1jnxQfdTSZVBMJx88I0/7wN5qzY1zH5Lrz/uIYRw4NQ661ZlY+qVof46soZr7PxKYq7QYGprhGVqwM2Ev1W/mTTXffzPq7M1Fz34Y9wKNx+3RiB2poz1c0GnOP9vpJJ7l3gb0dRQtJXsOoX3+9CakCOnKOlPS7pyDcKFmlHzDoYPfHHc5ui+QWaxmSapZ8HK1H8MwdM9IKn5MwtOxfOxNqARMaZMzJAecjq7ageCbb1NDvCA3Lo5obICdXPEmV0LD0bHgtb4l1NxY5d1AmPE6Cl29rStmjvdVK2ghq0dijRlIp60=
+
+Language :  Python
+
+Python : 
+  -  "3.6"
+
+Install : 
+  -  pip install mkdocs 
+  -  echo -e "machine github.com\n login ${GITHUB_TOKEN}" > ~/.netrc
+
+Script : 
+  -  mkdocs gh-deploy --force --clean
+
+Branches : 
+  only : 
+    -  master
+
