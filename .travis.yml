@@ -19,7 +19,7 @@ Install :
   -  echo -e "machine github.com\n login ${GITHUB_TOKEN}" > ~/.netrc
 
 Script : 
-  -  mkdocs gh-deploy --force --clean
+  -  mkdocs gh-deploy
 
 Branches : 
   only : 
